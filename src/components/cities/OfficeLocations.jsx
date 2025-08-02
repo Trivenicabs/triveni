@@ -1,84 +1,116 @@
-// OfficeLocations.jsx - Component to display office locations on route pages
-
 'use client';
 
-import React from 'react';
-import { MapPin, Phone, Clock } from 'lucide-react';
+import React, { useCallback } from 'react';
+import { MapPin, Phone, Clock, Navigation, Mail } from 'lucide-react';
 import { BsWhatsapp } from 'react-icons/bs';
 
 const OfficeCard = ({ office, cityName, isOrigin = false }) => {
-  const handleCall = () => {
+  // Optimized handlers with useCallback
+  const handleCall = useCallback(() => {
     window.open(`tel:+91${office.contact.phone}`, '_blank');
-  };
+  }, [office.contact.phone]);
 
-  const handleWhatsApp = () => {
-    window.open(`https://wa.me/${office.contact.whatsapp}`, '_blank');
-  };
+  const handleWhatsApp = useCallback(() => {
+    const message = `Hi, I'm interested in your taxi services at ${office.name}. Please share more details.`;
+    window.open(`https://wa.me/${office.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+  }, [office.contact.whatsapp, office.name]);
+
+  const handleGetDirections = useCallback(() => {
+    const address = encodeURIComponent(office.fullAddress);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+  }, [office.fullAddress]);
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow h-full flex flex-col">
+    <article className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
       {/* Header */}
-      <div className="flex justify-between items-start mb-4">
-        <div>
-          <h3 className="text-xl font-bold text-gray-900">{office.name}</h3>
-          <div className="flex items-center mt-1">
-            <span className={`px-2 py-1 text-xs rounded-full ${
-              isOrigin ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
+      <header className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-4">
+        <div className="flex-1">
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 leading-tight">
+            {office.name}
+          </h3>
+          <div className="flex items-center gap-2">
+            <span className={`px-3 py-1 text-xs font-medium rounded-full ${
+              isOrigin 
+                ? 'bg-blue-100 text-blue-700 border border-blue-200' 
+                : 'bg-green-100 text-green-700 border border-green-200'
             }`}>
-              {isOrigin ? 'Pick-up Office' : 'Drop Office'}
+              {isOrigin ? '📍 Pick-up Office' : '🎯 Drop Office'}
             </span>
           </div>
         </div>
-        <div className="text-right">
-          <div className="text-sm text-gray-500">Contact</div>
-          <div className="font-semibold">{office.contact.phone}</div>
+        
+        {/* Contact Info - Mobile Optimized */}
+        <div className="text-right flex-shrink-0">
+          <div className="text-xs text-gray-500">Contact</div>
+          <div className="font-semibold text-sm md:text-base">
+            +91-{office.contact.phone}
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Address - This section will grow to fill available space */}
+      {/* Address Section - Flexible Layout */}
       <div className="mb-4 flex-1">
-        <div className="flex items-start gap-2 mb-2">
+        <div className="flex items-start gap-3 mb-3">
           <MapPin className="w-4 h-4 text-gray-500 mt-1 flex-shrink-0" />
-          <div>
-            <p className="text-gray-700 font-medium">{office.address}</p>
-            <p className="text-sm text-gray-500">{cityName}, {office.pincode}</p>
+          <div className="flex-1 min-w-0">
+            <p className="text-gray-700 font-medium text-sm md:text-base leading-relaxed">
+              {office.address}
+            </p>
+            <p className="text-sm text-gray-500 mt-1">
+              {cityName}, {office.pincode}
+            </p>
           </div>
         </div>
         
         {office.landmark && (
-          <p className="text-sm text-gray-600 ml-6">
-            <span className="font-medium">Landmark:</span> {office.landmark}
-          </p>
+          <div className="ml-7 mb-3">
+            <p className="text-sm text-gray-600">
+              <span className="font-medium">Landmark:</span> {office.landmark}
+            </p>
+          </div>
         )}
-      </div>
 
-      {/* Timings */}
-      <div className="mb-4">
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <Clock className="w-4 h-4" />
-          <span>{office.timings}</span>
+        {/* Operating Hours */}
+        <div className="flex items-center gap-2 text-sm text-gray-600 ml-7">
+          <Clock className="w-4 h-4 flex-shrink-0" />
+          <span className="font-medium text-green-600">{office.timings}</span>
         </div>
       </div>
 
-      {/* Action Buttons - Always at bottom */}
-      <div className="flex gap-2 mt-auto">
+      {/* Action Buttons - Mobile Optimized */}
+      <footer className="space-y-2">
+        {/* Primary Actions */}
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            onClick={handleCall}
+            className="bg-green-600 text-white py-2.5 px-3 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+            aria-label={`Call office at ${office.contact.phone}`}
+          >
+            <Phone className="w-4 h-4" />
+            Call
+          </button>
+          
+          <button
+            onClick={handleWhatsApp}
+            className="bg-black text-white py-2.5 px-3 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2"
+            aria-label="Contact office on WhatsApp"
+          >
+            <BsWhatsapp className="w-4 h-4" />
+            WhatsApp
+          </button>
+        </div>
+
+        {/* Secondary Action */}
         <button
-          onClick={handleCall}
-          className="flex-1 bg-green-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-1"
+          onClick={handleGetDirections}
+          className="w-full bg-gray-100 text-gray-700 py-2.5 px-3 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+          aria-label="Get directions to office"
         >
-          <Phone className="w-4 h-4" />
-          Call
+          <Navigation className="w-4 h-4" />
+          Get Directions
         </button>
-        
-        <button
-          onClick={handleWhatsApp}
-          className="flex-1 bg-black text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-1"
-        >
-          <BsWhatsapp className="w-4 h-4" />
-          WhatsApp
-        </button>
-      </div>
-    </div>
+      </footer>
+    </article>
   );
 };
 
@@ -88,17 +120,54 @@ const OfficeLocations = ({ originCity, destinationCity, offices }) => {
     return null;
   }
 
+  const benefits = [
+    {
+      icon: "🤝",
+      text: "Personal assistance & guidance",
+      color: "text-blue-600"
+    },
+    {
+      icon: "💰", 
+      text: "Transparent pricing discussion",
+      color: "text-green-600"
+    },
+    {
+      icon: "🚗",
+      text: "Vehicle inspection available", 
+      color: "text-yellow-600"
+    },
+    {
+      icon: "🗺️",
+      text: "Custom tour planning",
+      color: "text-purple-600"
+    },
+    {
+      icon: "🚨",
+      text: "Emergency support",
+      color: "text-red-600"
+    },
+    {
+      icon: "📍",
+      text: "Local area expertise",
+      color: "text-indigo-600"
+    }
+  ];
+
   return (
-    <div className="space-y-4">
-      <h3 className="text-xl font-semibold">
-        Our Offices - Easy Pickup & Drop Services
-      </h3>
+    <section className="space-y-6" aria-labelledby="office-locations-heading">
+      {/* Header */}
+      <header>
+        <h2 id="office-locations-heading" className="text-xl md:text-2xl font-semibold mb-2">
+          Our Offices - Easy Pickup & Drop Services
+        </h2>
+        <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+          Visit our offices for hassle-free booking and reliable service. Our experienced team 
+          is ready to assist you with personalized travel solutions.
+        </p>
+      </header>
       
-      <p className="text-gray-600">
-        Visit our offices for hassle-free booking and reliable service. Our team is ready to assist you!
-      </p>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Office Cards Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Origin Office */}
         {offices.origin && (
           <OfficeCard 
@@ -118,39 +187,41 @@ const OfficeLocations = ({ originCity, destinationCity, offices }) => {
         )}
       </div>
       
-      {/* Benefits Section */}
-      <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-6 mt-6">
-        <h4 className="font-semibold mb-3 text-gray-800">
-          Why Visit Our Offices?
-        </h4>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            <span className="text-sm text-gray-700">Personal assistance & guidance</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="text-sm text-gray-700">Transparent pricing discussion</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-            <span className="text-sm text-gray-700">Vehicle inspection available</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-            <span className="text-sm text-gray-700">Custom tour planning</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-            <span className="text-sm text-gray-700">Emergency support</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-            <span className="text-sm text-gray-700">Local area expertise</span>
-          </div>
+      {/* Benefits Section - Enhanced */}
+      <aside className="bg-gradient-to-r from-blue-50 via-green-50 to-yellow-50 rounded-xl p-4 md:p-6 border border-gray-200">
+        <header className="mb-4">
+          <h3 className="font-semibold text-lg md:text-xl text-gray-800 mb-2">
+            Why Visit Our Offices?
+          </h3>
+          <p className="text-sm text-gray-600">
+            Get personalized service and expert guidance for your travel needs
+          </p>
+        </header>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+          {benefits.map((benefit, index) => (
+            <div 
+              key={index} 
+              className="flex items-center gap-3 bg-white/70 backdrop-blur-sm p-3 rounded-lg border border-white/50 hover:bg-white/90 transition-all duration-200"
+            >
+              <span className="text-lg flex-shrink-0" role="img" aria-hidden="true">
+                {benefit.icon}
+              </span>
+              <span className={`text-sm font-medium ${benefit.color} leading-tight`}>
+                {benefit.text}
+              </span>
+            </div>
+          ))}
         </div>
-      </div>
-    </div>
+
+        {/* Additional Info */}
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <p className="text-xs text-gray-500 text-center">
+            💡 <strong>Pro Tip:</strong> Visit our offices to get exclusive deals and personalized travel recommendations from our local experts
+          </p>
+        </div>
+      </aside>
+    </section>
   );
 };
 
