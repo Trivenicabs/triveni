@@ -64,7 +64,7 @@ export default function AboutPage() {
                 About Triveni Cabs
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Welcome to Triveni Cabs, your trusted travel partner dedicated to providing seamless, reliable, and comfortable transportation solutions. Whether you're planning a quick ride across the city, an outstation journey, or an airport transfer, we are here to ensure your travel is smooth, affordable, and enjoyable.
+                Welcome to Triveni Cabs, your trusted travel partner dedicated to providing seamless, reliable, and comfortable transportation solutions. Whether you are planning a quick ride across the city, an outstation journey, or an airport transfer, we are here to ensure your travel is smooth, affordable, and enjoyable.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
                 With years of experience in the transportation industry, we have built a reputation for excellence, safety, and customer satisfaction. Our modern fleet of vehicles and professional drivers ensure that every journey with us is memorable for all the right reasons.
@@ -138,7 +138,7 @@ export default function AboutPage() {
                 At Triveni Cabs, our mission is to redefine travel by offering unparalleled convenience, safety, and affordability. We aim to connect people and places with reliability and excellence, making every journey memorable.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                We believe that transportation should be stress-free, comfortable, and accessible to everyone. That's why we continuously invest in our fleet, technology, and training to deliver the best possible experience.
+                We believe that transportation should be stress-free, comfortable, and accessible to everyone. Thats why we continuously invest in our fleet, technology, and training to deliver the best possible experience.
               </p>
             </div>
             
