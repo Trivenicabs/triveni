@@ -242,7 +242,7 @@ export default function AboutPage() {
                 At Triveni Cabs, our mission is to redefine travel by offering unparalleled convenience, safety, and affordability. We aim to connect people and places with reliability and excellence, making every journey memorable.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                We believe that transportation should be stress-free, comfortable, and accessible to everyone. That's why we continuously invest in our fleet, technology, and training to deliver the best possible experience.
+                We believe that transportation should be stress-free, comfortable, and accessible to everyone. Thats why we continuously invest in our fleet, technology, and training to deliver the best possible experience.
               </p>
             </div>
             
