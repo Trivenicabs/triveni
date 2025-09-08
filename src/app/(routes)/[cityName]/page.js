@@ -1,4 +1,4 @@
-// src/app/[cityName]/page.js - SERVER COMPONENT (NO "use client")
+// src/app/[cityName]/page.js - OPTIMIZED SERVER COMPONENT
 import { notFound } from 'next/navigation';
 import { cities, vehiclesServices, cityDetails, touristSpots } from "@/utilis/data";
 import { cityRoutesData, basicCityRoutes, defaultRoutes } from "@/utilis/cityRoutesData";
@@ -68,106 +68,105 @@ export async function generateStaticParams() {
   return params;
 }
 
-// Enhanced SEO metadata generation with comprehensive keywords for all 14 cities
+// COMPLETELY REWRITTEN metadata generation with focused SEO optimization
 export async function generateMetadata({ params }) {
   const { cityName } = params;
   
-  // Comprehensive keyword sets for all 14 cities
-  const citySpecificKeywords = {
-    Delhi: [
-      'Delhi NCR taxi', 'Gurgaon cab service', 'Noida taxi booking', 'Delhi airport cab', 'Delhi metro taxi',
-      'Red Fort taxi tour', 'India Gate cab service', 'Connaught Place taxi', 'Delhi railway station cab',
-      'IGI airport taxi Delhi', 'Delhi Uber alternative', 'Delhi Ola competitor', 'government taxi Delhi',
-      'corporate cab Delhi', 'wedding car rental Delhi', 'Delhi outstation cab', 'interstate taxi Delhi'
-    ],
-    Agra: [
-      'Taj Mahal cab booking', 'Agra Fort taxi tour', 'Fatehpur Sikri cab service', 'golden triangle taxi',
-      'same day Agra tour', 'Agra heritage cab', 'Mathura Vrindavan taxi', 'Agra airport cab',
-      'Agra railway station taxi', 'sunrise Taj Mahal cab', 'Agra sightseeing package', 'UNESCO site taxi Agra'
-    ],
-    Jaipur: [
-      'Pink City cab service', 'Amber Fort taxi tour', 'Hawa Mahal cab booking', 'City Palace taxi',
-      'Jaipur heritage tour', 'Rajasthan royal taxi', 'Jaipur airport cab', 'desert safari cab Jaipur',
-      'Pushkar taxi from Jaipur', 'Ajmer cab service', 'Shekhawati tour taxi', 'palace on wheels alternative'
-    ],
-    Haridwar: [
-      'Ganga Aarti taxi Haridwar', 'Har Ki Pauri cab', 'Chardham yatra taxi', 'Mansa Devi temple cab',
-      'spiritual tour Haridwar', 'Kumbh Mela taxi', 'Haridwar pilgrimage cab', 'holy dip taxi Haridwar',
-      'Uttarakhand tour taxi', 'Gangotri cab from Haridwar', 'Yamunotri taxi booking'
-    ],
-    Chandigarh: [
-      'City Beautiful taxi', 'Rock Garden cab tour', 'Sukhna Lake taxi', 'Chandigarh airport cab',
-      'Mohali taxi service', 'Panchkula cab booking', 'Punjab taxi from Chandigarh', 'Shimla cab Chandigarh',
-      'Kasauli taxi booking', 'Chandigarh sightseeing cab', 'UT taxi service'
-    ],
-    Shimla: [
-      'Queen of Hills taxi', 'Mall Road cab Shimla', 'Kufri taxi booking', 'Shimla toy train cab',
-      'hill station taxi Shimla', 'summer capital cab', 'Mashobra taxi service', 'Chail cab booking',
-      'Shimla heritage taxi', 'colonial architecture tour cab', 'snow taxi Shimla', 'honeymoon cab Shimla'
-    ],
-    Manali: [
-      'Rohtang Pass taxi', 'Solang Valley cab', 'adventure sports taxi Manali', 'snow point cab',
-      'Kullu Manali taxi', 'Kasol cab from Manali', 'Spiti Valley taxi', 'Leh Ladakh cab Manali',
-      'river rafting taxi Manali', 'paragliding cab booking', 'Himachal tour taxi', 'honeymoon taxi Manali'
-    ],
-    Amritsar: [
-      'Golden Temple taxi', 'Wagah Border cab', 'Jallianwala Bagh taxi tour', 'Punjab heritage cab',
-      'Sikh pilgrimage taxi', 'Amritsar airport cab', 'Durgiana Temple taxi', 'Ram Tirath cab',
-      'Khalsa College taxi', 'Amritsar food tour cab', 'Punjab cultural taxi', 'langar taxi Amritsar'
-    ],
-    Dehradun: [
-      'Doon Valley taxi', 'Forest Research Institute cab', 'Robber Cave taxi tour', 'Dehradun airport cab',
-      'Mussoorie cab from Dehradun', 'Rajaji National Park taxi', 'Sahastradhara cab booking',
-      'educational hub taxi Dehradun', 'Uttarakhand capital cab', 'valley taxi service Dehradun'
-    ],
-    Rishikesh: [
-      'Yoga Capital taxi', 'Ganga rafting cab Rishikesh', 'Laxman Jhula taxi', 'Ram Jhula cab',
-      'Beatles Ashram taxi tour', 'adventure sports cab Rishikesh', 'spiritual retreat taxi',
-      'yoga teacher training cab', 'Triveni Ghat taxi', 'white water rafting cab', 'meditation taxi Rishikesh'
-    ],
-    Jodhpur: [
-      'Blue City taxi Jodhpur', 'Mehrangarh Fort cab', 'Umaid Bhawan taxi', 'desert safari Jodhpur',
-      'Rajasthan blue taxi', 'camel safari cab Jodhpur', 'Mandore taxi tour', 'Osian temple cab',
-      'royal heritage taxi Jodhpur', 'Thar desert cab', 'Jodhpur sightseeing taxi'
-    ],
-    Udaipur: [
-      'City of Lakes taxi', 'Lake Pichola cab tour', 'City Palace taxi Udaipur', 'Venice of East cab',
-      'royal heritage taxi Udaipur', 'Fateh Sagar taxi', 'Jagdish Temple cab', 'Saheliyon ki Bari taxi',
-      'romantic city cab Udaipur', 'palace hotel taxi', 'sunset taxi Udaipur', 'wedding destination cab'
-    ],
-    Ayodhya: [
-      'Ram Janmabhoomi taxi', 'Ayodhya Dham cab', 'spiritual tour Ayodhya', 'Ram Mandir taxi booking',
-      'Hanuman Garhi cab', 'Kanak Bhawan taxi', 'holy city cab Ayodhya', 'pilgrimage taxi Ayodhya',
-      'religious tour cab Ayodhya', 'Ramayana circuit taxi', 'devotional tour Ayodhya'
-    ],
-    Ahmedabad: [
-      'Gujarat commercial taxi', 'Sabarmati Ashram cab', 'Adalaj Stepwell taxi', 'Gandhinagar cab service',
-      'Gujarat heritage taxi', 'Akshardham taxi Ahmedabad', 'textile city cab', 'business hub taxi Gujarat',
-      'Rann of Kutch cab Ahmedabad', 'Somnath taxi from Ahmedabad', 'Dwarka cab booking'
-    ]
+  // Focused, high-intent keyword sets (quality over quantity)
+  const primaryKeywords = {
+    Delhi: {
+      primary: ['Delhi taxi service', 'cab booking Delhi', 'Delhi to Agra taxi', 'Delhi to Jaipur cab'],
+      location: ['Delhi NCR taxi', 'Delhi airport cab', 'India Gate taxi', 'Connaught Place cab'],
+      commercial: ['Delhi outstation taxi', 'corporate cab Delhi', 'wedding car rental Delhi']
+    },
+    Agra: {
+      primary: ['Agra taxi service', 'Taj Mahal cab booking', 'Agra Fort taxi tour', 'golden triangle taxi'],
+      location: ['same day Agra tour', 'Agra heritage cab', 'Mathura Vrindavan taxi'],
+      commercial: ['Agra airport cab', 'sunrise Taj Mahal cab', 'Agra sightseeing package']
+    },
+    Jaipur: {
+      primary: ['Jaipur taxi service', 'Pink City cab service', 'Amber Fort taxi tour', 'Hawa Mahal cab'],
+      location: ['City Palace taxi', 'Jaipur heritage tour', 'Rajasthan royal taxi'],
+      commercial: ['Jaipur airport cab', 'desert safari cab Jaipur', 'palace on wheels alternative']
+    },
+    Haridwar: {
+      primary: ['Haridwar taxi service', 'Ganga Aarti taxi', 'Har Ki Pauri cab', 'Chardham yatra taxi'],
+      location: ['Mansa Devi temple cab', 'spiritual tour Haridwar', 'Kumbh Mela taxi'],
+      commercial: ['Haridwar pilgrimage cab', 'Uttarakhand tour taxi', 'Gangotri cab from Haridwar']
+    },
+    Chandigarh: {
+      primary: ['Chandigarh taxi service', 'City Beautiful taxi', 'Rock Garden cab tour', 'Sukhna Lake taxi'],
+      location: ['Chandigarh airport cab', 'Mohali taxi service', 'Panchkula cab'],
+      commercial: ['Punjab taxi Chandigarh', 'Shimla cab Chandigarh', 'Kasauli taxi booking']
+    },
+    Shimla: {
+      primary: ['Shimla taxi service', 'Queen of Hills taxi', 'Mall Road cab Shimla', 'Kufri taxi booking'],
+      location: ['hill station taxi Shimla', 'summer capital cab', 'Mashobra taxi service'],
+      commercial: ['honeymoon cab Shimla', 'snow taxi Shimla', 'colonial architecture tour']
+    },
+    Manali: {
+      primary: ['Manali taxi service', 'Rohtang Pass taxi', 'Solang Valley cab', 'adventure sports taxi'],
+      location: ['snow point cab', 'Kullu Manali taxi', 'Kasol cab from Manali'],
+      commercial: ['honeymoon taxi Manali', 'Spiti Valley taxi', 'river rafting taxi Manali']
+    },
+    Amritsar: {
+      primary: ['Amritsar taxi service', 'Golden Temple taxi', 'Wagah Border cab', 'Jallianwala Bagh taxi'],
+      location: ['Punjab heritage cab', 'Sikh pilgrimage taxi', 'Amritsar airport cab'],
+      commercial: ['Durgiana Temple taxi', 'Amritsar food tour cab', 'langar taxi Amritsar']
+    },
+    Dehradun: {
+      primary: ['Dehradun taxi service', 'Doon Valley taxi', 'Forest Research Institute cab', 'Robber Cave taxi'],
+      location: ['Dehradun airport cab', 'Mussoorie cab Dehradun', 'Rajaji National Park taxi'],
+      commercial: ['educational hub taxi Dehradun', 'valley taxi service', 'Sahastradhara cab']
+    },
+    Rishikesh: {
+      primary: ['Rishikesh taxi service', 'Yoga Capital taxi', 'Ganga rafting cab', 'Laxman Jhula taxi'],
+      location: ['Ram Jhula cab', 'Beatles Ashram taxi', 'Triveni Ghat taxi'],
+      commercial: ['spiritual retreat taxi', 'yoga teacher training cab', 'meditation taxi']
+    },
+    Jodhpur: {
+      primary: ['Jodhpur taxi service', 'Blue City taxi', 'Mehrangarh Fort cab', 'Umaid Bhawan taxi'],
+      location: ['desert safari Jodhpur', 'camel safari cab', 'Mandore taxi tour'],
+      commercial: ['royal heritage taxi Jodhpur', 'Thar desert cab', 'Jodhpur sightseeing taxi']
+    },
+    Udaipur: {
+      primary: ['Udaipur taxi service', 'City of Lakes taxi', 'Lake Pichola cab', 'City Palace taxi'],
+      location: ['Venice of East cab', 'Fateh Sagar taxi', 'Jagdish Temple cab'],
+      commercial: ['romantic city cab Udaipur', 'wedding destination cab', 'sunset taxi Udaipur']
+    },
+    Ayodhya: {
+      primary: ['Ayodhya taxi service', 'Ram Janmabhoomi taxi', 'Ayodhya Dham cab', 'spiritual tour Ayodhya'],
+      location: ['Ram Mandir taxi booking', 'Hanuman Garhi cab', 'Kanak Bhawan taxi'],
+      commercial: ['pilgrimage taxi Ayodhya', 'religious tour cab', 'Ramayana circuit taxi']
+    },
+    Ahmedabad: {
+      primary: ['Ahmedabad taxi service', 'Gujarat commercial taxi', 'Sabarmati Ashram cab', 'Adalaj Stepwell taxi'],
+      location: ['Gandhinagar cab service', 'Gujarat heritage taxi', 'Akshardham taxi'],
+      commercial: ['textile city cab', 'Rann of Kutch cab', 'Somnath taxi Ahmedabad']
+    }
   };
 
-  // Route-specific keyword combinations
+  // High-converting route combinations for better targeting
   const routeKeywords = {
-    'Delhi-Agra': ['Golden Triangle tour', 'UNESCO heritage trip', 'Mughal circuit taxi', 'same day Delhi Agra'],
-    'Delhi-Jaipur': ['Pink City tour', 'Rajasthan royal trip', 'heritage triangle cab', 'palace tour taxi'],
-    'Delhi-Manali': ['Himachal trip taxi', 'hill station cab Delhi', 'adventure tour booking', 'mountain taxi Delhi'],
-    'Delhi-Shimla': ['hill queen taxi', 'colonial tour cab', 'summer escape taxi', 'toy train connection cab'],
-    'Delhi-Haridwar': ['spiritual journey taxi', 'Ganga darshan cab', 'holy trip Delhi', 'pilgrimage taxi booking'],
-    'Delhi-Rishikesh': ['yoga retreat taxi', 'adventure camp cab', 'spiritual adventure taxi', 'river sports cab'],
-    'Delhi-Chandigarh': ['city beautiful taxi', 'planned city cab', 'Punjab gateway taxi', 'modern city tour'],
-    'Delhi-Amritsar': ['Golden Temple trip', 'Punjab heritage taxi', 'Sikh pilgrimage cab', 'border ceremony taxi'],
-    'Delhi-Dehradun': ['valley capital taxi', 'Doon trip cab', 'education hub taxi', 'mountain gateway cab'],
-    'Agra-Jaipur': ['heritage circuit taxi', 'royal triangle tour', 'UNESCO twin city cab', 'Mughal Rajput tour'],
-    'Jaipur-Udaipur': ['royal Rajasthan taxi', 'palace circuit cab', 'lake city tour', 'heritage hotel taxi'],
-    'Chandigarh-Manali': ['hill station express', 'mountain adventure taxi', 'Himachal tour cab', 'scenic route taxi']
+    'Delhi-Agra': ['same day Agra tour from Delhi', 'Delhi to Taj Mahal taxi', 'Golden Triangle tour cab'],
+    'Delhi-Jaipur': ['Delhi to Pink City taxi', 'heritage triangle cab', 'Rajasthan tour from Delhi'],
+    'Delhi-Manali': ['Delhi to hill station cab', 'Himachal trip taxi', 'adventure tour booking Delhi'],
+    'Delhi-Shimla': ['Delhi to Queen of Hills', 'colonial tour cab', 'summer escape taxi Delhi'],
+    'Delhi-Haridwar': ['Delhi to holy city taxi', 'spiritual journey cab', 'Ganga darshan from Delhi'],
+    'Delhi-Rishikesh': ['Delhi to yoga capital', 'adventure camp cab', 'spiritual adventure taxi'],
+    'Delhi-Chandigarh': ['Delhi to city beautiful', 'planned city cab', 'Punjab gateway taxi'],
+    'Delhi-Amritsar': ['Delhi to Golden Temple', 'Punjab heritage taxi', 'Sikh pilgrimage cab'],
+    'Delhi-Dehradun': ['Delhi to valley capital', 'Doon trip cab', 'mountain gateway taxi'],
+    'Agra-Jaipur': ['Agra to Pink City taxi', 'heritage circuit cab', 'royal triangle tour'],
+    'Jaipur-Udaipur': ['Jaipur to Lake City', 'royal Rajasthan taxi', 'palace circuit cab'],
+    'Chandigarh-Manali': ['hill station express', 'mountain adventure taxi', 'Himachal tour cab']
   };
   
   // Check if it's a route (contains '-to-')
   const routeData = parseRouteSlug(cityName);
   
   if (routeData) {
-    // Route page metadata - Enhanced with comprehensive keywords
+    // ROUTE PAGE METADATA - HIGHLY OPTIMIZED
     const { cityName: originCity, destination } = routeData;
     const formattedCityName = originCity.charAt(0).toUpperCase() + originCity.slice(1);
     const formattedDestination = destination
@@ -182,118 +181,84 @@ export async function generateMetadata({ params }) {
     ) : null;
     
     const startingPrice = route?.prices?.[0]?.price || "₹2760";
+    const estimatedDistance = route?.distance || "150-300 km";
+    const estimatedTime = route?.time || "3-5 hours";
     
-    // Build comprehensive keywords array
-    const baseKeywords = [
+    // Build focused keyword array (limit to 50-75 high-intent keywords)
+    const routeKey = `${formattedCityName}-${formattedDestination}`;
+    const specificRouteKeywords = routeKeywords[routeKey] || [];
+    
+    // Get city-specific keywords (limited sets)
+    const originKeywords = primaryKeywords[formattedCityName]?.primary || [];
+    const destKeywords = primaryKeywords[formattedDestination]?.primary || [];
+    
+    // Core high-converting keywords only
+    const coreKeywords = [
       `${formattedCityName} to ${formattedDestination} cab`,
       `${formattedCityName} to ${formattedDestination} taxi`,
-      `${formattedCityName} to ${formattedDestination} car rental`,
-      `${formattedCityName} to ${formattedDestination} outstation cab`,
-      `${formattedCityName} ${formattedDestination} taxi service`,
+      `${formattedCityName} to ${formattedDestination} taxi service`,
       `cab booking ${formattedCityName} to ${formattedDestination}`,
       `one way taxi ${formattedCityName} ${formattedDestination}`,
       `round trip cab ${formattedCityName} ${formattedDestination}`,
       `AC cab ${formattedCityName} to ${formattedDestination}`,
-      `sedan taxi ${formattedCityName} ${formattedDestination}`,
-      `SUV rental ${formattedCityName} to ${formattedDestination}`,
-      `tempo traveller ${formattedCityName} ${formattedDestination}`,
-      `intercity cab ${formattedCityName}`,
-      `outstation taxi from ${formattedCityName}`,
-      `${formattedCityName} to ${formattedDestination} distance taxi`,
+      `outstation taxi ${formattedCityName}`,
       `cheap cab ${formattedCityName} to ${formattedDestination}`,
-      `best taxi service ${formattedCityName} ${formattedDestination}`,
-      `online cab booking ${formattedCityName}`,
+      `best taxi service ${formattedCityName}`,
       `24x7 taxi ${formattedCityName}`,
-      `reliable cab service ${formattedCityName}`,
       `professional driver ${formattedCityName}`,
       `safe taxi ${formattedCityName} to ${formattedDestination}`,
-      `transparent pricing cab ${formattedCityName}`,
-      `GPS enabled taxi ${formattedCityName}`,
-      `doorstep pickup ${formattedCityName}`,
+      `online cab booking ${formattedCityName}`,
       `airport drop ${formattedDestination}`,
-      `railway station pickup ${formattedCityName}`,
       `highway taxi ${formattedCityName} ${formattedDestination}`,
-      `expressway cab service`,
-      `interstate taxi booking`,
       `tourism cab ${formattedCityName}`,
-      `sightseeing taxi ${formattedDestination}`,
       `family cab ${formattedCityName} to ${formattedDestination}`,
-      `group taxi booking ${formattedCityName}`,
       `corporate cab service ${formattedCityName}`,
       `wedding car rental ${formattedCityName}`,
-      `event transportation ${formattedCityName}`,
       `luxury cab ${formattedCityName} to ${formattedDestination}`,
       `economy taxi ${formattedCityName}`,
-      `budget cab service ${formattedCityName}`,
-      `premium taxi ${formattedCityName} ${formattedDestination}`,
-      `comfortable cab ${formattedCityName}`,
-      `spacious taxi ${formattedCityName} to ${formattedDestination}`,
-      `luggage friendly cab ${formattedCityName}`,
-      `elderly friendly taxi ${formattedCityName}`,
-      `child friendly cab ${formattedCityName}`,
-      `pet friendly taxi ${formattedCityName}`,
-      `medical emergency cab ${formattedCityName}`,
-      `urgent taxi ${formattedCityName} to ${formattedDestination}`,
-      `instant cab booking ${formattedCityName}`,
-      `advance taxi booking ${formattedCityName}`,
-      `scheduled cab ${formattedCityName}`,
-      `return taxi ${formattedDestination} to ${formattedCityName}`,
       `same day return cab ${formattedCityName}`,
-      `overnight stay taxi ${formattedCityName}`,
-      `multi-stop cab ${formattedCityName}`,
-      `custom route taxi ${formattedCityName}`,
-      `direct cab ${formattedCityName} to ${formattedDestination}`,
-      `non-stop taxi ${formattedCityName}`,
-      `express cab service ${formattedCityName}`,
-      `fast taxi ${formattedCityName} to ${formattedDestination}`,
-      `quick cab booking ${formattedCityName}`,
-      `immediate taxi ${formattedCityName}`,
-      `emergency cab service ${formattedCityName}`,
-      `late night taxi ${formattedCityName}`,
-      `early morning cab ${formattedCityName}`,
-      `weekend taxi ${formattedCityName} to ${formattedDestination}`,
-      `holiday cab service ${formattedCityName}`,
-      `festival taxi ${formattedCityName}`,
-      `monsoon cab ${formattedCityName}`,
-      `winter taxi ${formattedCityName} to ${formattedDestination}`,
-      `summer cab service ${formattedCityName}`
+      `instant cab booking ${formattedCityName}`,
+      `advance taxi booking ${formattedCityName}`
     ];
-
-    // Add city-specific keywords
-    const originKeywords = citySpecificKeywords[formattedCityName] || [];
-    const destKeywords = citySpecificKeywords[formattedDestination] || [];
     
-    // Add route-specific keywords
-    const routeKey = `${formattedCityName}-${formattedDestination}`;
-    const specificRouteKeywords = routeKeywords[routeKey] || [];
+    // Combine focused keywords (max 75)
+    const allKeywords = [
+      ...coreKeywords,
+      ...specificRouteKeywords,
+      ...originKeywords.slice(0, 10),
+      ...destKeywords.slice(0, 10)
+    ].slice(0, 75);
     
-    // Combine all keywords
-    const allKeywords = [...baseKeywords, ...originKeywords, ...destKeywords, ...specificRouteKeywords];
+    // Optimized title with primary keyword first
+    const optimizedTitle = `${formattedCityName} to ${formattedDestination} Cab | ${startingPrice} - Triveni Taxi Service`;
+    
+    // Enhanced description with semantic keywords
+    const optimizedDescription = `Book ${formattedCityName} to ${formattedDestination} cab service online. Professional drivers, AC vehicles, ${estimatedDistance}, ${estimatedTime}. Starting ${startingPrice}. 24/7 availability, safe travel, instant booking.`;
     
     return {
-      title: `${formattedCityName} to ${formattedDestination} Cab Service | Book Online at ${startingPrice} - Triveni Cabs`,
-      description: `Book reliable cab service from ${formattedCityName} to ${formattedDestination}. ✓ AC vehicles ✓ Professional drivers ✓ 24/7 availability ✓ Transparent pricing starting ${startingPrice}. One-way & round trip options available.`,
+      title: optimizedTitle,
+      description: optimizedDescription,
       keywords: allKeywords.join(', '),
       openGraph: {
         title: `${formattedCityName} to ${formattedDestination} Cab Service - Book at ${startingPrice}`,
-        description: `Professional cab service from ${formattedCityName} to ${formattedDestination}. AC vehicles, verified drivers, transparent pricing. Book now!`,
+        description: `Professional taxi service from ${formattedCityName} to ${formattedDestination}. AC vehicles, verified drivers, transparent pricing. Book online!`,
         type: 'website',
         locale: 'en_IN',
         url: `/${cityName}`,
-        siteName: 'Triveni Cabs',
+        siteName: 'Triveni Cabs - Premier Taxi Service',
         images: [
           {
             url: '/images/car/car1.png',
             width: 1200,
             height: 630,
-            alt: `${formattedCityName} to ${formattedDestination} cab service`,
+            alt: `${formattedCityName} to ${formattedDestination} taxi service - Professional cab booking`,
           },
         ],
       },
       twitter: {
         card: 'summary_large_image',
         title: `${formattedCityName} to ${formattedDestination} Cab - ${startingPrice}`,
-        description: `Book reliable cab service from ${formattedCityName} to ${formattedDestination}. Professional drivers, AC vehicles.`,
+        description: `Book reliable taxi service from ${formattedCityName} to ${formattedDestination}. Professional drivers, AC vehicles, ${estimatedTime} journey.`,
         images: ['/images/car/car1.png'],
       },
       alternates: {
@@ -310,28 +275,37 @@ export async function generateMetadata({ params }) {
           'max-snippet': -1,
         },
       },
+      // Enhanced structured data signals
       other: {
         'geo.region': 'IN',
         'geo.placename': formattedCityName,
         'og:locality': formattedCityName,
         'business:contact_data:locality': formattedCityName,
         'business:contact_data:region': 'India',
+        'business:contact_data:phone_number': '+917668570551',
+        'og:type': 'website',
+        'og:image:type': 'image/png',
+        'article:author': 'Triveni Cabs',
+        'article:publisher': 'https://trivenican.com',
       }
     };
   } else {
-    // City page metadata - Enhanced with comprehensive location-specific keywords
+    // CITY PAGE METADATA - HIGHLY OPTIMIZED
     const formattedCityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
     
-    // Build comprehensive keywords for city pages
+    // Get city-specific focused keywords
+    const cityKeywords = primaryKeywords[formattedCityName] || primaryKeywords.Delhi;
+    
+    // Core city-level keywords (focused on local intent)
     const baseCityKeywords = [
       `taxi service ${formattedCityName}`,
       `cab booking ${formattedCityName}`,
-      `car rental ${formattedCityName}`,
+      `${formattedCityName} taxi service`,
+      `${formattedCityName} cab booking`,
       `outstation taxi ${formattedCityName}`,
       `local cab service ${formattedCityName}`,
       `airport taxi ${formattedCityName}`,
       `railway station cab ${formattedCityName}`,
-      `wedding car rental ${formattedCityName}`,
       `AC cab ${formattedCityName}`,
       `cheap taxi ${formattedCityName}`,
       `online cab booking ${formattedCityName}`,
@@ -480,29 +454,29 @@ export async function generateMetadata({ params }) {
     const allCityKeywords = [...baseCityKeywords, ...specificKeywords];
     
     return {
-      title: `Best Taxi Service in ${formattedCityName} | Car Rental & Cab Booking - Triveni Cabs`,
-      description: `#1 taxi service in ${formattedCityName} for outstation trips, local tours, airport transfers & wedding car rentals. ✓ Professional drivers ✓ AC vehicles ✓ 24/7 availability ✓ Best rates. Book now!`,
+      title: optimizedCityTitle,
+      description: optimizedCityDescription,
       keywords: allCityKeywords.join(', '),
       openGraph: {
         title: `Best Taxi Service in ${formattedCityName} - Triveni Cabs`,
-        description: `Reliable taxi service in ${formattedCityName}. Book cabs for outstation, local trips, and special occasions. Professional drivers, transparent pricing.`,
+        description: `Reliable taxi service in ${formattedCityName}. Professional drivers, AC vehicles, transparent pricing. Book cabs for local & outstation trips.`,
         type: 'website',
         locale: 'en_IN',
         url: `/${cityName}`,
-        siteName: 'Triveni Cabs',
+        siteName: 'Triveni Cabs - Premier Taxi Service',
         images: [
           {
             url: '/images/car/car2.png',
             width: 1200,
             height: 630,
-            alt: `Taxi service in ${formattedCityName}`,
+            alt: `Professional taxi service in ${formattedCityName} - Book AC cabs online`,
           },
         ],
       },
       twitter: {
         card: 'summary_large_image',
         title: `Best Taxi Service in ${formattedCityName}`,
-        description: `Professional taxi service in ${formattedCityName}. Outstation trips, local tours, airport transfers.`,
+        description: `Professional taxi service in ${formattedCityName}. Outstation trips, local tours, airport transfers. Book AC cabs online.`,
         images: ['/images/car/car2.png'],
       },
       alternates: {
@@ -525,6 +499,11 @@ export async function generateMetadata({ params }) {
         'og:locality': formattedCityName,
         'business:contact_data:locality': formattedCityName,
         'business:contact_data:region': 'India',
+        'business:contact_data:phone_number': '+917830003009',
+        'og:type': 'website',
+        'og:image:type': 'image/png',
+        'article:author': 'Triveni Cabs',
+        'article:publisher': 'https://trivenican.com',
       }
     };
   }
