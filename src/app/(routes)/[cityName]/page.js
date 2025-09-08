@@ -1,4 +1,4 @@
-// src/app/[cityName]/page.js - OPTIMIZED SERVER COMPONENT
+// src/app/[cityName]/page.js - SERVER COMPONENT (NO "use client")
 import { notFound } from 'next/navigation';
 import { cities, vehiclesServices, cityDetails, touristSpots } from "@/utilis/data";
 import { cityRoutesData, basicCityRoutes, defaultRoutes } from "@/utilis/cityRoutesData";
@@ -68,12 +68,12 @@ export async function generateStaticParams() {
   return params;
 }
 
-// COMPLETELY REWRITTEN metadata generation with focused SEO optimization
+// Enhanced SEO metadata generation with comprehensive keywords for all 14 cities
 export async function generateMetadata({ params }) {
   const { cityName } = params;
   
-  // Focused, high-intent keyword sets (quality over quantity)
-  const primaryKeywords = {
+  // Comprehensive keyword sets for all 14 cities
+  const citySpecificKeywords = {
     Delhi: {
       primary: ['Delhi taxi service', 'cab booking Delhi', 'Delhi to Agra taxi', 'Delhi to Jaipur cab'],
       location: ['Delhi NCR taxi', 'Delhi airport cab', 'India Gate taxi', 'Connaught Place cab'],
@@ -146,7 +146,7 @@ export async function generateMetadata({ params }) {
     }
   };
 
-  // High-converting route combinations for better targeting
+  // Route-specific keyword combinations
   const routeKeywords = {
     'Delhi-Agra': ['same day Agra tour from Delhi', 'Delhi to Taj Mahal taxi', 'Golden Triangle tour cab'],
     'Delhi-Jaipur': ['Delhi to Pink City taxi', 'heritage triangle cab', 'Rajasthan tour from Delhi'],
@@ -166,7 +166,7 @@ export async function generateMetadata({ params }) {
   const routeData = parseRouteSlug(cityName);
   
   if (routeData) {
-    // ROUTE PAGE METADATA - HIGHLY OPTIMIZED
+    // Route page metadata - Enhanced with comprehensive keywords
     const { cityName: originCity, destination } = routeData;
     const formattedCityName = originCity.charAt(0).toUpperCase() + originCity.slice(1);
     const formattedDestination = destination
@@ -181,84 +181,118 @@ export async function generateMetadata({ params }) {
     ) : null;
     
     const startingPrice = route?.prices?.[0]?.price || "₹2760";
-    const estimatedDistance = route?.distance || "150-300 km";
-    const estimatedTime = route?.time || "3-5 hours";
     
-    // Build focused keyword array (limit to 50-75 high-intent keywords)
-    const routeKey = `${formattedCityName}-${formattedDestination}`;
-    const specificRouteKeywords = routeKeywords[routeKey] || [];
-    
-    // Get city-specific keywords (limited sets)
-    const originKeywords = primaryKeywords[formattedCityName]?.primary || [];
-    const destKeywords = primaryKeywords[formattedDestination]?.primary || [];
-    
-    // Core high-converting keywords only
-    const coreKeywords = [
+    // Build comprehensive keywords array
+    const baseKeywords = [
       `${formattedCityName} to ${formattedDestination} cab`,
       `${formattedCityName} to ${formattedDestination} taxi`,
-      `${formattedCityName} to ${formattedDestination} taxi service`,
+      `${formattedCityName} to ${formattedDestination} car rental`,
+      `${formattedCityName} to ${formattedDestination} outstation cab`,
+      `${formattedCityName} ${formattedDestination} taxi service`,
       `cab booking ${formattedCityName} to ${formattedDestination}`,
       `one way taxi ${formattedCityName} ${formattedDestination}`,
       `round trip cab ${formattedCityName} ${formattedDestination}`,
       `AC cab ${formattedCityName} to ${formattedDestination}`,
-      `outstation taxi ${formattedCityName}`,
+      `sedan taxi ${formattedCityName} ${formattedDestination}`,
+      `SUV rental ${formattedCityName} to ${formattedDestination}`,
+      `tempo traveller ${formattedCityName} ${formattedDestination}`,
+      `intercity cab ${formattedCityName}`,
+      `outstation taxi from ${formattedCityName}`,
+      `${formattedCityName} to ${formattedDestination} distance taxi`,
       `cheap cab ${formattedCityName} to ${formattedDestination}`,
-      `best taxi service ${formattedCityName}`,
+      `best taxi service ${formattedCityName} ${formattedDestination}`,
+      `online cab booking ${formattedCityName}`,
       `24x7 taxi ${formattedCityName}`,
+      `reliable cab service ${formattedCityName}`,
       `professional driver ${formattedCityName}`,
       `safe taxi ${formattedCityName} to ${formattedDestination}`,
-      `online cab booking ${formattedCityName}`,
+      `transparent pricing cab ${formattedCityName}`,
+      `GPS enabled taxi ${formattedCityName}`,
+      `doorstep pickup ${formattedCityName}`,
       `airport drop ${formattedDestination}`,
+      `railway station pickup ${formattedCityName}`,
       `highway taxi ${formattedCityName} ${formattedDestination}`,
+      `expressway cab service`,
+      `interstate taxi booking`,
       `tourism cab ${formattedCityName}`,
+      `sightseeing taxi ${formattedDestination}`,
       `family cab ${formattedCityName} to ${formattedDestination}`,
+      `group taxi booking ${formattedCityName}`,
       `corporate cab service ${formattedCityName}`,
       `wedding car rental ${formattedCityName}`,
+      `event transportation ${formattedCityName}`,
       `luxury cab ${formattedCityName} to ${formattedDestination}`,
       `economy taxi ${formattedCityName}`,
-      `same day return cab ${formattedCityName}`,
+      `budget cab service ${formattedCityName}`,
+      `premium taxi ${formattedCityName} ${formattedDestination}`,
+      `comfortable cab ${formattedCityName}`,
+      `spacious taxi ${formattedCityName} to ${formattedDestination}`,
+      `luggage friendly cab ${formattedCityName}`,
+      `elderly friendly taxi ${formattedCityName}`,
+      `child friendly cab ${formattedCityName}`,
+      `pet friendly taxi ${formattedCityName}`,
+      `medical emergency cab ${formattedCityName}`,
+      `urgent taxi ${formattedCityName} to ${formattedDestination}`,
       `instant cab booking ${formattedCityName}`,
-      `advance taxi booking ${formattedCityName}`
+      `advance taxi booking ${formattedCityName}`,
+      `scheduled cab ${formattedCityName}`,
+      `return taxi ${formattedDestination} to ${formattedCityName}`,
+      `same day return cab ${formattedCityName}`,
+      `overnight stay taxi ${formattedCityName}`,
+      `multi-stop cab ${formattedCityName}`,
+      `custom route taxi ${formattedCityName}`,
+      `direct cab ${formattedCityName} to ${formattedDestination}`,
+      `non-stop taxi ${formattedCityName}`,
+      `express cab service ${formattedCityName}`,
+      `fast taxi ${formattedCityName} to ${formattedDestination}`,
+      `quick cab booking ${formattedCityName}`,
+      `immediate taxi ${formattedCityName}`,
+      `emergency cab service ${formattedCityName}`,
+      `late night taxi ${formattedCityName}`,
+      `early morning cab ${formattedCityName}`,
+      `weekend taxi ${formattedCityName} to ${formattedDestination}`,
+      `holiday cab service ${formattedCityName}`,
+      `festival taxi ${formattedCityName}`,
+      `monsoon cab ${formattedCityName}`,
+      `winter taxi ${formattedCityName} to ${formattedDestination}`,
+      `summer cab service ${formattedCityName}`
     ];
+
+    // Add city-specific keywords
+    const originKeywords = citySpecificKeywords[formattedCityName] || [];
+    const destKeywords = citySpecificKeywords[formattedDestination] || [];
     
-    // Combine focused keywords (max 75)
-    const allKeywords = [
-      ...coreKeywords,
-      ...specificRouteKeywords,
-      ...originKeywords.slice(0, 10),
-      ...destKeywords.slice(0, 10)
-    ].slice(0, 75);
+    // Add route-specific keywords
+    const routeKey = `${formattedCityName}-${formattedDestination}`;
+    const specificRouteKeywords = routeKeywords[routeKey] || [];
     
-    // Optimized title with primary keyword first
-    const optimizedTitle = `${formattedCityName} to ${formattedDestination} Cab | ${startingPrice} - Triveni Taxi Service`;
-    
-    // Enhanced description with semantic keywords
-    const optimizedDescription = `Book ${formattedCityName} to ${formattedDestination} cab service online. Professional drivers, AC vehicles, ${estimatedDistance}, ${estimatedTime}. Starting ${startingPrice}. 24/7 availability, safe travel, instant booking.`;
+    // Combine all keywords
+    const allKeywords = [...baseKeywords, ...originKeywords, ...destKeywords, ...specificRouteKeywords];
     
     return {
-      title: optimizedTitle,
-      description: optimizedDescription,
+      title: `${formattedCityName} to ${formattedDestination} Cab Service | Book Online at ${startingPrice} - Triveni Cabs`,
+      description: `Book reliable cab service from ${formattedCityName} to ${formattedDestination}. ✓ AC vehicles ✓ Professional drivers ✓ 24/7 availability ✓ Transparent pricing starting ${startingPrice}. One-way & round trip options available.`,
       keywords: allKeywords.join(', '),
       openGraph: {
         title: `${formattedCityName} to ${formattedDestination} Cab Service - Book at ${startingPrice}`,
-        description: `Professional taxi service from ${formattedCityName} to ${formattedDestination}. AC vehicles, verified drivers, transparent pricing. Book online!`,
+        description: `Professional cab service from ${formattedCityName} to ${formattedDestination}. AC vehicles, verified drivers, transparent pricing. Book now!`,
         type: 'website',
         locale: 'en_IN',
         url: `/${cityName}`,
-        siteName: 'Triveni Cabs - Premier Taxi Service',
+        siteName: 'Triveni Cabs',
         images: [
           {
             url: '/images/car/car1.png',
             width: 1200,
             height: 630,
-            alt: `${formattedCityName} to ${formattedDestination} taxi service - Professional cab booking`,
+            alt: `${formattedCityName} to ${formattedDestination} cab service`,
           },
         ],
       },
       twitter: {
         card: 'summary_large_image',
         title: `${formattedCityName} to ${formattedDestination} Cab - ${startingPrice}`,
-        description: `Book reliable taxi service from ${formattedCityName} to ${formattedDestination}. Professional drivers, AC vehicles, ${estimatedTime} journey.`,
+        description: `Book reliable cab service from ${formattedCityName} to ${formattedDestination}. Professional drivers, AC vehicles.`,
         images: ['/images/car/car1.png'],
       },
       alternates: {
@@ -275,37 +309,34 @@ export async function generateMetadata({ params }) {
           'max-snippet': -1,
         },
       },
-      // Enhanced structured data signals
       other: {
         'geo.region': 'IN',
         'geo.placename': formattedCityName,
         'og:locality': formattedCityName,
         'business:contact_data:locality': formattedCityName,
         'business:contact_data:region': 'India',
-        'business:contact_data:phone_number': '+917668570551',
+                'business:contact_data:phone_number': '+917668570551',
         'og:type': 'website',
         'og:image:type': 'image/png',
         'article:author': 'Triveni Cabs',
-        'article:publisher': 'https://trivenican.com',
+        'article:publisher': 'https://trivenicabs.in',
+      
       }
     };
   } else {
-    // CITY PAGE METADATA - HIGHLY OPTIMIZED
+    // City page metadata - Enhanced with comprehensive location-specific keywords
     const formattedCityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
     
-    // Get city-specific focused keywords
-    const cityKeywords = primaryKeywords[formattedCityName] || primaryKeywords.Delhi;
-    
-    // Core city-level keywords (focused on local intent)
+    // Build comprehensive keywords for city pages
     const baseCityKeywords = [
       `taxi service ${formattedCityName}`,
       `cab booking ${formattedCityName}`,
-      `${formattedCityName} taxi service`,
-      `${formattedCityName} cab booking`,
+      `car rental ${formattedCityName}`,
       `outstation taxi ${formattedCityName}`,
       `local cab service ${formattedCityName}`,
       `airport taxi ${formattedCityName}`,
       `railway station cab ${formattedCityName}`,
+      `wedding car rental ${formattedCityName}`,
       `AC cab ${formattedCityName}`,
       `cheap taxi ${formattedCityName}`,
       `online cab booking ${formattedCityName}`,
@@ -454,29 +485,29 @@ export async function generateMetadata({ params }) {
     const allCityKeywords = [...baseCityKeywords, ...specificKeywords];
     
     return {
-      title: optimizedCityTitle,
-      description: optimizedCityDescription,
+      title: `Best Taxi Service in ${formattedCityName} | Car Rental & Cab Booking - Triveni Cabs`,
+       description: `Reliable taxi service in ${formattedCityName}. Professional drivers, AC vehicles, transparent pricing. Book cabs for local & outstation trips.`,
       keywords: allCityKeywords.join(', '),
       openGraph: {
         title: `Best Taxi Service in ${formattedCityName} - Triveni Cabs`,
-        description: `Reliable taxi service in ${formattedCityName}. Professional drivers, AC vehicles, transparent pricing. Book cabs for local & outstation trips.`,
+        description: `Reliable taxi service in ${formattedCityName}. Book cabs for outstation, local trips, and special occasions. Professional drivers, transparent pricing.`,
         type: 'website',
         locale: 'en_IN',
         url: `/${cityName}`,
-        siteName: 'Triveni Cabs - Premier Taxi Service',
+        siteName: 'Triveni Cabs',
         images: [
           {
             url: '/images/car/car2.png',
             width: 1200,
             height: 630,
-            alt: `Professional taxi service in ${formattedCityName} - Book AC cabs online`,
+            alt: `Taxi service in ${formattedCityName}`,
           },
         ],
       },
       twitter: {
         card: 'summary_large_image',
         title: `Best Taxi Service in ${formattedCityName}`,
-        description: `Professional taxi service in ${formattedCityName}. Outstation trips, local tours, airport transfers. Book AC cabs online.`,
+        description: `Professional taxi service in ${formattedCityName}. Outstation trips, local tours, airport transfers.`,
         images: ['/images/car/car2.png'],
       },
       alternates: {
@@ -499,11 +530,11 @@ export async function generateMetadata({ params }) {
         'og:locality': formattedCityName,
         'business:contact_data:locality': formattedCityName,
         'business:contact_data:region': 'India',
-        'business:contact_data:phone_number': '+917830003009',
+          'business:contact_data:phone_number': '+917668570551',
         'og:type': 'website',
         'og:image:type': 'image/png',
         'article:author': 'Triveni Cabs',
-        'article:publisher': 'https://trivenican.com',
+        'article:publisher': 'https://trivenicabs.in',
       }
     };
   }
