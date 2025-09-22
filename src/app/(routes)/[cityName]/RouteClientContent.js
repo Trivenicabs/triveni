@@ -843,7 +843,7 @@ export default function RouteClientContent({
                 Vehicle Options for Every Travel Need
               </h3>
               <p className="mb-4">
-                Whether you're traveling solo, with family, or in a group, we have the perfect vehicle for your {formattedCityName} to {formattedDestination} 
+                Whether you are traveling solo, with family, or in a group, we have the perfect vehicle for your {formattedCityName} to {formattedDestination} 
                 journey. Our fleet includes comfortable Sedans for 4 passengers, spacious SUVs (Ertiga/Innova) for 6-7 passengers, and Tempo Travellers 
                 for larger groups up to 25 passengers. All vehicles are well-maintained, air-conditioned, and equipped with safety features.
               </p>
