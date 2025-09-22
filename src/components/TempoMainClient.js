@@ -79,7 +79,7 @@ export default function TempoMainClient({ data }) {
               Premium <span className="text-yellow-400">Tempo Traveller</span> Service
             </h1>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
-              Comfortable group travel across India's most beautiful destinations. 
+              Comfortable group travel across India s most beautiful destinations. 
               Professional drivers, well-maintained vehicles, competitive rates.
             </p>
             

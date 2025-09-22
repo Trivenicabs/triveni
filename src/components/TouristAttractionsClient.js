@@ -223,7 +223,7 @@ const TouristAttractionsClient = ({ data }) => {
         <div className="bg-white rounded-2xl shadow-lg p-8 text-center mb-16">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Need Help Planning Your Trip?</h3>
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Our travel experts can help you create a customized itinerary for visiting {city}'s attractions. 
+            Our travel experts can help you create a customized itinerary for visiting {city}  attractions. 
             Get personalized recommendations and book the perfect tempo traveller for your group.
           </p>
           
