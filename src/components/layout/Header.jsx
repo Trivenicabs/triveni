@@ -65,7 +65,7 @@ const Header = () => {
               <Link href="/services" className="font-bold text-gray-700 hover:text-yellow-600 px-2 py-1 transition-colors">
                 Services
               </Link>
-              <Link href="/destinations" className="font-bold text-gray-700 hover:text-yellow-600 px-2 py-1 transition-colors">
+              <Link href="/tempo-traveller" className="font-bold text-gray-700 hover:text-yellow-600 px-2 py-1 transition-colors">
                 Destinations
               </Link>
               <Link
