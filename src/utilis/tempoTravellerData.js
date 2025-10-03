@@ -123,90 +123,90 @@ export const tempoRoutes = {
     { name: "Delhi", type: "Metro" },
     { name: "Agra", type: "Heritage" }
   ],
-  Varanasi: [
-    { name: "Prayagraj", type: "Spiritual" },
-    { name: "Ayodhya", type: "Spiritual" },
-    { name: "Lucknow", type: "Heritage" }
-  ],
-  Udaipur: [
-    { name: "Mount Abu", type: "Hill Station" },
-    { name: "Ahmedabad", type: "Commercial" },
-    { name: "Jodhpur", type: "Blue City" },
-    { name: "Jaipur", type: "Royal" }
-  ],
-  Jodhpur: [
-    { name: "Jaisalmer", type: "Desert" },
-    { name: "Udaipur", type: "Lakes" },
-    { name: "Jaipur", type: "Royal" }
-  ],
-  Ajmer: [
-    { name: "Pushkar", type: "Spiritual" },
-    { name: "Jaipur", type: "Royal" },
-    { name: "Udaipur", type: "Lakes" }
-  ],
-  Pushkar: [
-    { name: "Ajmer", type: "Spiritual" },
-    { name: "Udaipur", type: "Lakes" },
-    { name: "Jaipur", type: "Royal" }
-  ]
-};
+//   Varanasi: [
+//     { name: "Prayagraj", type: "Spiritual" },
+//     { name: "Ayodhya", type: "Spiritual" },
+//     { name: "Lucknow", type: "Heritage" }
+//   ],
+//   Udaipur: [
+//     { name: "Mount Abu", type: "Hill Station" },
+//     { name: "Ahmedabad", type: "Commercial" },
+//     { name: "Jodhpur", type: "Blue City" },
+//     { name: "Jaipur", type: "Royal" }
+//   ],
+//   Jodhpur: [
+//     { name: "Jaisalmer", type: "Desert" },
+//     { name: "Udaipur", type: "Lakes" },
+//     { name: "Jaipur", type: "Royal" }
+//   ],
+//   Ajmer: [
+//     { name: "Pushkar", type: "Spiritual" },
+//     { name: "Jaipur", type: "Royal" },
+//     { name: "Udaipur", type: "Lakes" }
+//   ],
+//   Pushkar: [
+//     { name: "Ajmer", type: "Spiritual" },
+//     { name: "Udaipur", type: "Lakes" },
+//     { name: "Jaipur", type: "Royal" }
+//   ]
+// };
 
-// Local sightseeing data for each destination city
-export const localSightseeing = {
-  Shimla: [
-    "Mall Road", "Ridge Road", "Christ Church", "Jakhu Temple", 
-    "Kufri", "Chail", "Naldehra", "Mashobra"
-  ],
-  Manali: [
-    "Hadimba Temple", "Solang Valley", "Rohtang Pass", "Old Manali", 
-    "Vashisht Hot Springs", "Jogini Falls", "Manu Temple"
-  ],
-  Dharamshala: [
-    "McLeod Ganj", "Dalai Lama Temple", "Bhagsu Waterfall", 
-    "Triund Trek", "Norbulingka Institute", "St. John Church"
-  ],
-  Amritsar: [
-    "Golden Temple", "Wagah Border", "Jallianwala Bagh", 
-    "Partition Museum", "Gobindgarh Fort", "Ram Tirath"
-  ],
-  Haridwar: [
-    "Har Ki Pauri", "Mansa Devi Temple", "Chandi Devi Temple", 
-    "Maya Devi Temple", "Bharat Mata Mandir", "Patanjali Yogpeeth"
-  ],
-  Rishikesh: [
-    "Laxman Jhula", "Ram Jhula", "Beatles Ashram", "Triveni Ghat", 
-    "Parmarth Niketan", "Neelkanth Mahadev", "Kunjapuri Temple"
-  ],
-  Jaipur: [
-    "Amber Fort", "Hawa Mahal", "City Palace", "Jantar Mantar", 
-    "Nahargarh Fort", "Jaigarh Fort", "Albert Hall Museum"
-  ],
-  Agra: [
-    "Taj Mahal", "Agra Fort", "Fatehpur Sikri", "Mehtab Bagh", 
-    "Itmad-ud-Daulah", "Sikandra", "Agra Bear Rescue"
-  ],
-  Delhi: [
-    "Red Fort", "India Gate", "Qutub Minar", "Lotus Temple", 
-    "Akshardham", "Humayun's Tomb", "Connaught Place"
-  ],
-  Udaipur: [
-    "City Palace", "Lake Pichola", "Jag Mandir", "Fateh Sagar Lake", 
-    "Saheliyon Ki Bari", "Jagdish Temple", "Monsoon Palace"
-  ],
-  Jodhpur: [
-    "Mehrangarh Fort", "Umaid Bhawan Palace", "Jaswant Thada", 
-    "Clock Tower", "Mandore Gardens", "Rao Jodha Desert Rock Park"
-  ],
-  Varanasi: [
-    "Kashi Vishwanath Temple", "Dashashwamedh Ghat", "Sarnath", 
-    "Assi Ghat", "Manikarnika Ghat", "BHU Campus", "Ramnagar Fort"
-  ],
-  Lucknow: [
-    "Bara Imambara", "Chota Imambara", "Rumi Darwaza", 
-    "British Residency", "Hazratganj", "Ambedkar Park"
-  ],
-  Ayodhya: [
-    "Ram Janmabhoomi", "Hanuman Garhi", "Kanak Bhawan", 
-    "Dashrath Mahal", "Sita ki Rasoi", "Ramkot"
-  ]
+// // Local sightseeing data for each destination city
+// export const localSightseeing = {
+//   Shimla: [
+//     "Mall Road", "Ridge Road", "Christ Church", "Jakhu Temple", 
+//     "Kufri", "Chail", "Naldehra", "Mashobra"
+//   ],
+//   Manali: [
+//     "Hadimba Temple", "Solang Valley", "Rohtang Pass", "Old Manali", 
+//     "Vashisht Hot Springs", "Jogini Falls", "Manu Temple"
+//   ],
+//   Dharamshala: [
+//     "McLeod Ganj", "Dalai Lama Temple", "Bhagsu Waterfall", 
+//     "Triund Trek", "Norbulingka Institute", "St. John Church"
+//   ],
+//   Amritsar: [
+//     "Golden Temple", "Wagah Border", "Jallianwala Bagh", 
+//     "Partition Museum", "Gobindgarh Fort", "Ram Tirath"
+//   ],
+//   Haridwar: [
+//     "Har Ki Pauri", "Mansa Devi Temple", "Chandi Devi Temple", 
+//     "Maya Devi Temple", "Bharat Mata Mandir", "Patanjali Yogpeeth"
+//   ],
+//   Rishikesh: [
+//     "Laxman Jhula", "Ram Jhula", "Beatles Ashram", "Triveni Ghat", 
+//     "Parmarth Niketan", "Neelkanth Mahadev", "Kunjapuri Temple"
+//   ],
+//   Jaipur: [
+//     "Amber Fort", "Hawa Mahal", "City Palace", "Jantar Mantar", 
+//     "Nahargarh Fort", "Jaigarh Fort", "Albert Hall Museum"
+//   ],
+//   Agra: [
+//     "Taj Mahal", "Agra Fort", "Fatehpur Sikri", "Mehtab Bagh", 
+//     "Itmad-ud-Daulah", "Sikandra", "Agra Bear Rescue"
+//   ],
+//   Delhi: [
+//     "Red Fort", "India Gate", "Qutub Minar", "Lotus Temple", 
+//     "Akshardham", "Humayun's Tomb", "Connaught Place"
+//   ],
+//   Udaipur: [
+//     "City Palace", "Lake Pichola", "Jag Mandir", "Fateh Sagar Lake", 
+//     "Saheliyon Ki Bari", "Jagdish Temple", "Monsoon Palace"
+//   ],
+//   Jodhpur: [
+//     "Mehrangarh Fort", "Umaid Bhawan Palace", "Jaswant Thada", 
+//     "Clock Tower", "Mandore Gardens", "Rao Jodha Desert Rock Park"
+//   ],
+//   Varanasi: [
+//     "Kashi Vishwanath Temple", "Dashashwamedh Ghat", "Sarnath", 
+//     "Assi Ghat", "Manikarnika Ghat", "BHU Campus", "Ramnagar Fort"
+//   ],
+//   Lucknow: [
+//     "Bara Imambara", "Chota Imambara", "Rumi Darwaza", 
+//     "British Residency", "Hazratganj", "Ambedkar Park"
+//   ],
+//   Ayodhya: [
+//     "Ram Janmabhoomi", "Hanuman Garhi", "Kanak Bhawan", 
+//     "Dashrath Mahal", "Sita ki Rasoi", "Ramkot"
+//   ]
 };
