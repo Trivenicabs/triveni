@@ -146,7 +146,7 @@ export default async function TempoTravellerRoutePage({ params }) {
   };
 
   const routeData = findRouteData(originFormatted, destinationFormatted);
-  const destinationSightseeing = localSightseeing[destinationFormatted] || [];
+  const destinationSightseeing = localSightseeing?.[destinationFormatted] || [];
 
   // Prepare data for client component
   const pageData = {
