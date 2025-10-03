@@ -119,9 +119,9 @@ export const tempoRoutes = {
   ],
   Lucknow: [
     { name: "Varanasi", type: "Spiritual" },
-    { name: "Ayodhya", type: "Spiritual" },
-    { name: "Delhi", type: "Metro" },
-    { name: "Agra", type: "Heritage" }
+    { name: "Ayodhya", type: "Spiritual" }
+    // { name: "Delhi", type: "Metro" },
+    // { name: "Agra", type: "Heritage" }
   ],
 //   Varanasi: [
 //     { name: "Prayagraj", type: "Spiritual" },
