@@ -137,7 +137,7 @@ const Header = () => {
                 Services
               </Link>
               <Link
-                href="/destinations"
+                href="/tempo-traveller"
                 className="text-gray-700 hover:text-yellow-600 font-semibold"
                 onClick={toggleMenu}
               >
