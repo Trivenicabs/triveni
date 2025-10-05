@@ -1,44 +1,92 @@
-// This is the Server Component
+// This is the Server Component for Booking Page
 import { tourDetails } from "@/utilis/data";
 import BookingForm from "@/components/BookingForm";
 
-// SEO Keywords mapping for booking pages
-const bookingSeoKeywords = {
+// SEO Content for booking pages
+const bookingSeoContent = {
   "manali-tour-from-mumbai": {
-    primary: ["book Manali tour", "Manali booking", "Mumbai to Manali booking"],
-    secondary: ["online Manali tour booking", "Himachal Pradesh tour booking", "book Rohtang Pass tour"],
-    longTail: ["book Manali tour package online", "Mumbai to Manali tour booking form", "instant Manali tour confirmation"],
-    booking: ["secure booking", "instant confirmation", "best price booking", "online tour reservation"]
+    title: "Book Manali Tour Package from Mumbai Online",
+    h1: "Book Your Manali Tour from Mumbai - Instant Confirmation",
+    intro: "Book your Manali tour package from Mumbai online and get instant confirmation. Best rates at ₹9,999 for 5 days. Secure payment, easy cancellation, 24/7 customer support.",
+    whyBook: "Booking your Manali tour from Mumbai is now easier than ever. Fill out our simple booking form and receive instant confirmation via email and SMS. Our secure online booking system ensures your data is protected.",
+    benefits: [
+      "Instant booking confirmation for your Manali tour",
+      "Best price guarantee - ₹9,999 for 5 days 4 nights",
+      "Secure online payment options",
+      "Easy cancellation policy up to 7 days before departure",
+      "24/7 customer support via phone and WhatsApp"
+    ],
+    destinations: "This Manali tour package from Mumbai includes visits to Rohtang Pass, Solang Valley, Hadimba Temple, and Mall Road with comfortable accommodation and guided tours."
   },
   "chardham-yatra-package": {
-    primary: ["book Chardham Yatra", "Char Dham booking", "spiritual tour booking"],
-    secondary: ["online Chardham booking", "pilgrimage tour booking", "Kedarnath Badrinath booking"],
-    longTail: ["book complete Chardham Yatra online", "Delhi to Chardham booking form", "sacred tour booking India"],
-    booking: ["pilgrimage booking", "spiritual journey booking", "temple tour reservation", "devotional tour booking"]
+    title: "Book Chardham Yatra Package from Delhi Online",
+    h1: "Book Complete Chardham Yatra Package - Sacred Pilgrimage Tour",
+    intro: "Book your complete Chardham Yatra package from Delhi online at ₹24,999 for 12 days. Visit Yamunotri, Gangotri, Kedarnath, and Badrinath with instant booking confirmation.",
+    whyBook: "Our Chardham Yatra booking system makes it easy to secure your spiritual journey. Book online with complete transparency - no hidden charges, instant confirmation, and dedicated support throughout your pilgrimage.",
+    benefits: [
+      "Complete Char Dham darshan booking - all four temples",
+      "Instant confirmation with detailed itinerary",
+      "Experienced guides for spiritual guidance",
+      "Comfortable deluxe hotel accommodations",
+      "Special darshan arrangements at all temples"
+    ],
+    destinations: "This Chardham Yatra package covers Yamunotri Temple, Gangotri Temple, Kedarnath Temple, Badrinath Temple, plus visits to Haridwar and Rishikesh."
   },
   "shimla-from-mumbai": {
-    primary: ["book Shimla tour", "Shimla booking", "Mumbai to Shimla booking"],
-    secondary: ["hill station booking", "Queen of Hills booking", "colonial tour booking"],
-    longTail: ["book Shimla package from Mumbai", "6 days Shimla tour booking", "heritage hill station booking"],
-    booking: ["mountain tour booking", "hill station reservation", "scenic tour booking", "colonial architecture tour"]
+    title: "Book Shimla Tour Package from Mumbai Online",
+    h1: "Book Your Shimla Tour from Mumbai - Queen of Hills Package",
+    intro: "Book Shimla tour package from Mumbai online at ₹14,999 for 6 days. Experience colonial charm, scenic beauty, and hill station activities with instant confirmation.",
+    whyBook: "Secure your Shimla holiday from Mumbai with our easy online booking. Get instant confirmation, best rates, and complete transparency. Book now and enjoy hassle-free hill station vacation.",
+    benefits: [
+      "Best rate for 6 days Shimla tour - ₹14,999",
+      "Instant online booking confirmation",
+      "Comfortable 3-star hotel in Shimla",
+      "Visit Mall Road, Kufri, and other attractions",
+      "Professional local guide included"
+    ],
+    destinations: "Visit Shimla's Mall Road, The Ridge, Christ Church, Jakhu Temple, Kufri, and Naldehra during this comprehensive 6-day hill station tour."
   },
   "rajasthan-tour": {
-    primary: ["book Rajasthan tour", "royal Rajasthan booking", "heritage tour booking"],
-    secondary: ["palace tour booking", "desert tour booking", "cultural Rajasthan booking"],
-    longTail: ["book royal Rajasthan package", "heritage palace tour booking", "complete Rajasthan tour booking"],
-    booking: ["royal tour booking", "palace reservation", "heritage site booking", "cultural tour booking"]
+    title: "Book Rajasthan Tour Package Online - Royal Heritage Tour",
+    h1: "Book Complete Rajasthan Heritage Tour - 7 Days Royal Package",
+    intro: "Book your Rajasthan tour package online at ₹19,999 for 7 days. Explore Jaipur, Jodhpur, Udaipur palaces and forts with instant booking confirmation.",
+    whyBook: "Experience the royal heritage of Rajasthan with our comprehensive tour package. Easy online booking, instant confirmation, and best rates for palace tours, desert safaris, and cultural experiences.",
+    benefits: [
+      "Complete Rajasthan heritage tour - 7 days",
+      "Visit Jaipur, Jodhpur, Udaipur, and Pushkar",
+      "4-star heritage hotel accommodations",
+      "Palace tours and cultural performances included",
+      "Instant booking with secure payment"
+    ],
+    destinations: "Explore Amber Fort, Mehrangarh Fort, City Palace Udaipur, Lake Pichola, Dilwara Temples, and more during this royal Rajasthan tour."
   },
   "kashmir-tour": {
-    primary: ["book Kashmir tour", "Kashmir valley booking", "Srinagar tour booking"],
-    secondary: ["Dal Lake tour booking", "paradise booking", "houseboat booking Kashmir"],
-    longTail: ["book Kashmir paradise tour", "valley of Kashmir booking online", "complete Kashmir tour booking"],
-    booking: ["valley tour booking", "scenic Kashmir booking", "mountain tour reservation", "lake tour booking"]
+    title: "Book Kashmir Tour Package Online - Paradise Valley Tour",
+    h1: "Book Your Kashmir Tour Package - Dal Lake & Valley Tours",
+    intro: "Book Kashmir tour package online at ₹16,999 for 5 days. Experience Srinagar's Dal Lake, Gulmarg, Pahalgam with flights included and instant confirmation.",
+    whyBook: "Secure your Kashmir paradise tour with our hassle-free online booking. Includes flights from Delhi, Shikara rides, hotel accommodations, and all sightseeing. Instant confirmation guaranteed.",
+    benefits: [
+      "Flights from Delhi to Srinagar included",
+      "Shikara ride on famous Dal Lake",
+      "Day trips to Gulmarg and Pahalgam",
+      "Deluxe hotel with mountain views",
+      "Complete Kashmir valley tour in 5 days"
+    ],
+    destinations: "Visit Srinagar's Dal Lake and Mughal Gardens, Gulmarg for cable car rides, Pahalgam's Betaab Valley, and experience houseboat culture."
   },
   "punjab-tour": {
-    primary: ["book Punjab tour", "Golden Temple booking", "Punjab cultural booking"],
-    secondary: ["Amritsar tour booking", "Sikh heritage booking", "Punjab culture booking"],
-    longTail: ["book Golden Temple tour package", "Punjab cultural tour booking", "Amritsar heritage booking"],
-    booking: ["cultural tour booking", "temple tour booking", "heritage Punjab booking", "spiritual Punjab tour"]
+    title: "Book Punjab Tour Package Online - Golden Temple Amritsar",
+    h1: "Book Punjab Cultural Tour - Golden Temple & Wagah Border",
+    intro: "Book Punjab tour package from Delhi online at ₹10,999 for 3 days. Visit Golden Temple, Wagah Border, Jallianwala Bagh with instant booking confirmation.",
+    whyBook: "Experience Punjab's rich culture and heritage with our easy online booking. Visit sacred Golden Temple, witness Wagah Border ceremony, and explore Sikh heritage sites with confirmed reservations.",
+    benefits: [
+      "Visit sacred Golden Temple (Harmandir Sahib)",
+      "Witness Wagah Border flag ceremony",
+      "3-star hotel in Amritsar city center",
+      "Experience authentic Punjabi cuisine",
+      "Instant booking confirmation"
+    ],
+    destinations: "Visit Golden Temple, Jallianwala Bagh memorial, Wagah Border, Gobindgarh Fort, and local Amritsar markets during this 3-day Punjab cultural tour."
   }
 };
 
@@ -53,9 +101,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = params;
   const packageInfo = tourDetails[slug];
-  const keywords = bookingSeoKeywords[slug];
+  const content = bookingSeoContent[slug];
   
-  if (!packageInfo) {
+  if (!packageInfo || !content) {
     return {
       title: "Booking Not Found | Triveni Cabs",
       description: "The requested booking page could not be found",
@@ -63,38 +111,20 @@ export async function generateMetadata({ params }) {
   }
 
   // Create comprehensive meta description for booking page
-  const metaDescription = `Book ${packageInfo.title} online with instant confirmation. Best rates at ${packageInfo.price} for ${packageInfo.duration}. Secure booking, 24/7 support, easy cancellation. Book your ${packageInfo.destination} tour from ${packageInfo.startingPoint} now!`;
-
-  // Combine all keywords for meta keywords
-  const allKeywords = keywords ? [
-    ...keywords.primary,
-    ...keywords.secondary,
-    ...keywords.longTail,
-    ...keywords.booking,
-    "online tour booking",
-    "instant confirmation",
-    "secure payment",
-    "tour reservation",
-    "travel booking India",
-    "Triveni Cabs booking",
-    "holiday booking",
-    "vacation packages",
-    "tour package booking form"
-  ].join(", ") : "";
+  const metaDescription = `${content.intro} Fill the booking form for ${packageInfo.title}. Best rates, instant confirmation, secure payment, 24/7 support. Call 7668570551 to book now.`;
 
   return {
-    title: `Book ${packageInfo.title} Online | ${packageInfo.price} | Instant Confirmation | Triveni Cabs`,
+    title: `${content.title} | ${packageInfo.price} | Triveni Cabs`,
     description: metaDescription,
-    keywords: allKeywords,
     openGraph: {
-      title: `Book ${packageInfo.title} - Instant Confirmation at ${packageInfo.price}`,
+      title: `${content.title} - Instant Confirmation`,
       description: metaDescription,
       images: [
         {
           url: packageInfo.image,
           width: 1200,
           height: 630,
-          alt: `Book ${packageInfo.title} - ${packageInfo.destination} tour booking form`
+          alt: `Book ${packageInfo.title} online - Booking form`
         }
       ],
       type: 'website',
@@ -103,7 +133,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Book ${packageInfo.title} | ${packageInfo.price} | Instant Booking`,
+      title: `${content.title}`,
       description: metaDescription,
       images: [packageInfo.image],
     },
@@ -121,16 +151,6 @@ export async function generateMetadata({ params }) {
         'max-snippet': -1,
       },
     },
-    verification: {
-      google: 'your-google-verification-code',
-    },
-    other: {
-      'booking-page': 'true',
-      'tour-package': packageInfo.title,
-      'destination': packageInfo.destination,
-      'price': packageInfo.price,
-      'duration': packageInfo.duration
-    }
   };
 }
 
@@ -215,50 +235,15 @@ const trackingScript = `
       });
     }
   };
-
-  // Function to track form field interactions
-  window.trackFormFieldInteraction = function(tourSlug, fieldName) {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'form_field_interaction', {
-        'event_category': 'form_engagement',
-        'event_label': fieldName,
-        'tour_package': tourSlug,
-        'page_type': 'booking_form'
-      });
-    }
-  };
-
-  // Function to track booking abandonment
-  window.trackBookingAbandonment = function(tourSlug, packageTitle) {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'booking_abandonment', {
-        'event_category': 'tour_booking',
-        'event_label': tourSlug,
-        'tour_package': packageTitle,
-        'page_type': 'booking_form'
-      });
-    }
-  };
-
-  // Track when user leaves the page (potential abandonment)
-  window.addEventListener('beforeunload', function(e) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const tourSlug = window.location.pathname.split('/')[2];
-    if (tourSlug && !sessionStorage.getItem('booking_completed')) {
-      if (window.trackBookingAbandonment) {
-        window.trackBookingAbandonment(tourSlug, document.title);
-      }
-    }
-  });
 `;
 
 // Server component for the booking page
 export default function BookingPage({ params }) {
   const { slug } = params;
   const packageInfo = tourDetails[slug];
-  const keywords = bookingSeoKeywords[slug];
+  const content = bookingSeoContent[slug];
   
-  if (!packageInfo) {
+  if (!packageInfo || !content) {
     return <div className="text-center py-16">Package not found</div>;
   }
 
@@ -267,7 +252,7 @@ export default function BookingPage({ params }) {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": `Book ${packageInfo.title}`,
-    "description": `Online booking form for ${packageInfo.title} tour package`,
+    "description": content.intro,
     "url": `https://trivenicabs.com/tour-packages/${slug}/book`,
     "mainEntity": {
       "@type": "TourPackage",
@@ -409,13 +394,6 @@ export default function BookingPage({ params }) {
                 window.trackTourBookingPageView('${slug}', '${packageInfo.title}');
               }
               
-              // Set booking page session
-              sessionStorage.setItem('booking_page_visited', 'true');
-              sessionStorage.setItem('booking_tour_slug', '${slug}');
-              
-              // Track time spent on booking page
-              window.bookingPageStartTime = Date.now();
-              
               // Enhanced ecommerce tracking
               if (typeof gtag !== 'undefined') {
                 gtag('event', 'begin_checkout', {
@@ -425,44 +403,104 @@ export default function BookingPage({ params }) {
                     'item_id': '${slug}',
                     'item_name': '${packageInfo.title}',
                     'item_category': 'Tour Package',
-                    'item_category2': '${packageInfo.destination}',
-                    'item_category3': '${packageInfo.category || 'Adventure'}',
                     'price': ${packageInfo.price.replace('₹', '').replace(',', '')},
                     'quantity': 1
                   }]
                 });
               }
             });
-            
-            // Track time on page when leaving
-            window.addEventListener('beforeunload', function() {
-              if (window.bookingPageStartTime) {
-                const timeSpent = Math.round((Date.now() - window.bookingPageStartTime) / 1000);
-                if (typeof gtag !== 'undefined') {
-                  gtag('event', 'booking_page_time_spent', {
-                    'event_category': 'engagement',
-                    'event_label': '${slug}',
-                    'value': timeSpent,
-                    'custom_parameter': 'seconds'
-                  });
-                }
-              }
-            });
           `
         }}
       />
 
-      {/* SEO-enhanced heading for booking page */}
-      <div style={{ display: 'none' }}>
-        <h1>Book {packageInfo.title} Online - Instant Confirmation</h1>
-        <h2>Secure Booking Form for {packageInfo.destination} Tour Package</h2>
-        <p>
-          {keywords?.longTail?.[0] || `Book your ${packageInfo.title} with instant confirmation`}. 
-          Best rates guaranteed at {packageInfo.price} for {packageInfo.duration}. 
-          Secure payment, 24/7 support, easy cancellation policy.
-        </p>
+      <div className="bg-gray-50 min-h-screen">
+        {/* Breadcrumb Navigation */}
+        <div className="bg-white border-b">
+          <div className="max-w-7xl mx-auto px-4 py-3">
+            <nav className="flex items-center text-sm text-gray-600">
+              <span>Home</span>
+              <span className="mx-2">/</span>
+              <span>Tour Packages</span>
+              <span className="mx-2">/</span>
+              <span>{packageInfo.title}</span>
+              <span className="mx-2">/</span>
+              <span className="font-semibold text-gray-900">Book Now</span>
+            </nav>
+          </div>
+        </div>
+
+        {/* Main Booking Content */}
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          
+          {/* SEO-Optimized Header Section */}
+          <div className="bg-white rounded-2xl shadow-sm p-8 mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {content.h1}
+            </h1>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              {content.intro}
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              {content.whyBook}
+            </p>
+          </div>
+
+          {/* Booking Benefits Section */}
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-sm p-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Why Book {packageInfo.destination} Tour Package Online with Us?
+            </h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {content.benefits.map((benefit, index) => (
+                <div key={index} className="flex items-start bg-white p-4 rounded-lg shadow-sm">
+                  <svg className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Destinations Covered */}
+          <div className="bg-yellow-50 rounded-2xl shadow-sm p-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Places Covered in This {packageInfo.destination} Tour Package
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
+              {content.destinations}
+            </p>
+          </div>
+
+          {/* Package Summary Box */}
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+              <div className="text-4xl font-bold text-gray-900 mb-2">
+                {packageInfo.price}
+              </div>
+              <div className="text-sm text-gray-600">per person</div>
+              <div className="text-xs text-green-600 font-medium mt-1">Best Price Guaranteed</div>
+            </div>
+            <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+              <div className="text-2xl font-bold text-gray-900 mb-2">
+                {packageInfo.duration}
+              </div>
+              <div className="text-sm text-gray-600">Tour Duration</div>
+              <div className="text-xs text-blue-600 font-medium mt-1">Complete Itinerary Included</div>
+            </div>
+            <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+              <div className="text-2xl font-bold text-gray-900 mb-2">
+                Instant
+              </div>
+              <div className="text-sm text-gray-600">Confirmation</div>
+              <div className="text-xs text-purple-600 font-medium mt-1">Email & SMS Alert</div>
+            </div>
+          </div>
+
+        </div>
       </div>
       
+      {/* Booking Form Component */}
       <BookingForm slug={slug} packageInfo={packageInfo} />
     </>
   );

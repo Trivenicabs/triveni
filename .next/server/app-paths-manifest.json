@@ -1,1 +1,21 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/(routes)/contact/page": "app/(routes)/contact/page.js",
+  "/(routes)/about/page": "app/(routes)/about/page.js",
+  "/(routes)/cancellation-and-refund-policy/page": "app/(routes)/cancellation-and-refund-policy/page.js",
+  "/(routes)/tour-guide/page": "app/(routes)/tour-guide/page.js",
+  "/(routes)/terms-and-conditions/page": "app/(routes)/terms-and-conditions/page.js",
+  "/(routes)/tourist-spots/page": "app/(routes)/tourist-spots/page.js",
+  "/(routes)/vehicles/[slug]/page": "app/(routes)/vehicles/[slug]/page.js",
+  "/page": "app/page.js",
+  "/(routes)/destinations/page": "app/(routes)/destinations/page.js",
+  "/(routes)/services/page": "app/(routes)/services/page.js",
+  "/(routes)/tempo-traveller/[route]/page": "app/(routes)/tempo-traveller/[route]/page.js",
+  "/(routes)/tempo-traveller/page": "app/(routes)/tempo-traveller/page.js",
+  "/(routes)/tourist-attractions/[city]/page": "app/(routes)/tourist-attractions/[city]/page.js",
+  "/(routes)/car-rental/page": "app/(routes)/car-rental/page.js",
+  "/(routes)/tour-package/[slug]/book/page": "app/(routes)/tour-package/[slug]/book/page.js",
+  "/(routes)/tour-package/[slug]/page": "app/(routes)/tour-package/[slug]/page.js",
+  "/(routes)/[cityName]/page": "app/(routes)/[cityName]/page.js"
+}
