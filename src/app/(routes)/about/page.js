@@ -268,7 +268,7 @@ export default function AboutPage() {
             <div className="space-y-8">
               <div>
                 <h2 id="about-heading" className="text-4xl font-bold text-gray-900 mb-6">
-                  About Triveni Cabs - India's Trusted Cab Service Provider
+                  About Triveni Cabs - India Trusted Cab Service Provider
                 </h2>
                 
                 {/* Paragraph 1: Primary Keywords (Easy to rank - high volume) */}
@@ -364,7 +364,7 @@ export default function AboutPage() {
                 Why Choose Triveni Cabs for Online Taxi Booking?
               </h2>
               <p className="text-gray-600 max-w-3xl mx-auto">
-                India's most trusted <strong>cab booking service</strong> with professional drivers, GPS-tracked vehicles, 
+                India most trusted <strong>cab booking service</strong> with professional drivers, GPS-tracked vehicles, 
                 and customer-first approach. Book the <strong>best cab service near you</strong> with instant confirmation.
               </p>
             </header>
@@ -420,7 +420,7 @@ export default function AboutPage() {
                   and convenient through instant confirmation, transparent pricing, and professional service.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  We believe every journey should be comfortable and stress-free. That's why we invest in modern vehicles, 
+                  We believe every journey should be comfortable and stress-free. That is why we invest in modern vehicles, 
                   professional driver training, GPS technology, and 24/7 customer support to deliver exceptional 
                   <strong> cab rental service</strong> across India.
                 </p>
@@ -428,7 +428,7 @@ export default function AboutPage() {
               
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Why We're India's Trusted Taxi Service
+                  Why We are India Trusted Taxi Service
                 </h3>
                 <div className="space-y-4" role="list">
                   {valuesData.map(({ icon, title, description }, index) => (
@@ -481,7 +481,7 @@ export default function AboutPage() {
                 Ready to Book Your Cab Online?
               </h2>
               <p className="text-xl opacity-90">
-                Experience India's best cab booking service. Get instant confirmation, affordable rates, and 24/7 support!
+                Experience India s best cab booking service. Get instant confirmation, affordable rates, and 24/7 support!
               </p>
             </header>
             
