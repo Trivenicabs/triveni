@@ -9,6 +9,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import { phoneNumber } from "@/utilis/data";
 import { getRouteOffices } from "@/utilis/officeLocations";
 import OfficeLocations from "@/components/cities/OfficeLocations";
+import { getAllKeywordsForPage } from "@/utilis/enhancedKeywords";
 
 // Helper function to create route slug
 function createRouteSlug(cityName, destination) {
@@ -18,7 +19,7 @@ function createRouteSlug(cityName, destination) {
 export default function RouteClientContent({
   cityName,
   formattedCityName,
-  destination, 
+  destination,
   formattedDestination,
   estimatedDistance,
   estimatedTime,
@@ -30,8 +31,8 @@ export default function RouteClientContent({
   const [vehiclePricingType, setVehiclePricingType] = useState({});
 
   // Memoize office locations
-  const routeOffices = useMemo(() => 
-    getRouteOffices(formattedCityName, formattedDestination), 
+  const routeOffices = useMemo(() =>
+    getRouteOffices(formattedCityName, formattedDestination),
     [formattedCityName, formattedDestination]
   );
 
@@ -39,7 +40,7 @@ export default function RouteClientContent({
   const handleCallNow = useCallback(() => {
     window.open(`tel:+91${phoneNumber}`, '_blank');
   }, []);
-  
+
   const handleWhatsApp = useCallback(() => {
     const message = `Hi, I want to book a cab from ${formattedCityName} to ${formattedDestination}. Please share pricing and availability.`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
@@ -48,26 +49,26 @@ export default function RouteClientContent({
   // Memoized vehicle filtering
   const { filteredVehicles, roundTripOnlyVehicles } = useMemo(() => {
     if (!route.prices) return { filteredVehicles: [], roundTripOnlyVehicles: [] };
-    
-    const filtered = activeTab === 'oneWay' 
-      ? route.prices.filter(price => 
-          !price.vehicle.toLowerCase().includes('bus') && 
-          !price.vehicle.toLowerCase().includes('tempo')
-        )
+
+    const filtered = activeTab === 'oneWay'
+      ? route.prices.filter(price =>
+        !price.vehicle.toLowerCase().includes('bus') &&
+        !price.vehicle.toLowerCase().includes('tempo')
+      )
       : route.prices;
-    
-    const roundTripOnly = route.prices.filter(price => 
-      price.vehicle.toLowerCase().includes('bus') || 
+
+    const roundTripOnly = route.prices.filter(price =>
+      price.vehicle.toLowerCase().includes('bus') ||
       price.vehicle.toLowerCase().includes('tempo')
     );
-    
+
     return { filteredVehicles: filtered, roundTripOnlyVehicles: roundTripOnly };
   }, [route.prices, activeTab]);
 
   // Memoized starting price
   const startingPrice = useMemo(() => {
     if (!filteredVehicles.length) return "₹2760";
-    
+
     const prices = filteredVehicles.map(p => {
       const price = activeTab === 'oneWay' ? p.price : p.roundTrip;
       return parseInt(price.replace('₹', '').replace(',', ''));
@@ -79,7 +80,7 @@ export default function RouteClientContent({
   const getVehicleImage = useCallback((vehicleType) => {
     const imageMap = {
       'Sedan': '/images/car/car1.png',
-      'SUV Ertiga': '/images/car/car2.png', 
+      'SUV Ertiga': '/images/car/car2.png',
       'SUV Innova': '/images/car/car2.png',
       'Tempo Traveller': '/images/car/tempo_traveller.jpeg',
       'Bus': '/images/car/luxury_bus.jpeg'
@@ -92,7 +93,7 @@ export default function RouteClientContent({
     const capacityMap = {
       'Sedan': '4 passengers',
       'SUV Ertiga': '6 passengers',
-      'SUV Innova': '7 passengers', 
+      'SUV Innova': '7 passengers',
       'Tempo Traveller': '25 passengers',
       'Bus': '35 passengers'
     };
@@ -141,7 +142,7 @@ export default function RouteClientContent({
             "name": formattedCityName
           },
           {
-            "@type": "Place", 
+            "@type": "Place",
             "name": formattedDestination
           }
         ],
@@ -236,7 +237,7 @@ export default function RouteClientContent({
             }
           },
           {
-            "@type": "Question", 
+            "@type": "Question",
             "name": `Is one-way cab booking available from ${formattedCityName} to ${formattedDestination}?`,
             "acceptedAnswer": {
               "@type": "Answer",
@@ -247,6 +248,10 @@ export default function RouteClientContent({
       }
     ]
   }), [formattedCityName, formattedDestination, startingPrice, filteredVehicles, route, cityName, destination]);
+  const allPageKeywords = useMemo(() =>
+    getAllKeywordsForPage(formattedCityName, formattedDestination),
+    [formattedCityName, formattedDestination]
+  );
 
   return (
     <>
@@ -270,8 +275,8 @@ export default function RouteClientContent({
             <nav className="mb-6" aria-label="Breadcrumb">
               <ol className="inline-flex items-center space-x-1 md:space-x-3 text-sm">
                 <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                  <Link 
-                    href="/" 
+                  <Link
+                    href="/"
                     className="text-white hover:text-yellow-400 transition-colors"
                     itemProp="item"
                   >
@@ -281,7 +286,7 @@ export default function RouteClientContent({
                 </li>
                 <ChevronRight className="w-4 h-4 mx-1 text-white" />
                 <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                  <Link 
+                  <Link
                     href={`/${cityName}`}
                     className="text-white hover:text-yellow-400 transition-colors"
                     itemProp="item"
@@ -303,12 +308,12 @@ export default function RouteClientContent({
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                 Book {formattedCityName} to {formattedDestination} <span className="text-yellow-400">Cab Service</span> - Starting ₹{startingPrice.replace('₹', '')}
               </h1>
-              
+
               <p className="text-lg md:text-xl text-white mb-6 max-w-3xl leading-relaxed">
-                Reliable and affordable taxi booking from {formattedCityName} to {formattedDestination} with professional drivers, 
+                Reliable and affordable taxi booking from {formattedCityName} to {formattedDestination} with professional drivers,
                 clean AC vehicles, and transparent pricing. Book one-way or round-trip cabs online. 24/7 customer support available.
               </p>
-              
+
               {/* Key Info Pills */}
               <div className="flex flex-wrap gap-3 md:gap-4 mb-8">
                 <div className="flex items-center bg-white/15 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full text-white text-sm md:text-base">
@@ -324,10 +329,10 @@ export default function RouteClientContent({
                   <span itemProp="aggregateRating">4.8★ Rated Service</span>
                 </div>
               </div>
-              
+
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <button 
+                <button
                   onClick={handleCallNow}
                   className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg flex items-center justify-center transition-all transform hover:scale-105 font-medium"
                   aria-label={`Call ${phoneNumber} to book taxi from ${formattedCityName} to ${formattedDestination}`}
@@ -336,8 +341,8 @@ export default function RouteClientContent({
                   <Phone className="w-5 h-5 mr-2" />
                   Call Now - {phoneNumber}
                 </button>
-                
-                <button 
+
+                <button
                   onClick={handleWhatsApp}
                   className="bg-black hover:bg-yellow-400 hover:text-black text-white px-6 py-3 rounded-lg flex items-center justify-center transition-all transform hover:scale-105 font-medium"
                   aria-label={`WhatsApp booking for ${formattedCityName} to ${formattedDestination} cab service`}
@@ -349,20 +354,20 @@ export default function RouteClientContent({
             </div>
           </div>
         </header>
-        
+
         {/* Main Content */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-          
+
           {/* Enhanced Service Highlights Section */}
           <section className="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8" itemScope itemType="https://schema.org/Service">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
               Why Choose Our {formattedCityName} to {formattedDestination} Taxi Service?
             </h2>
             <p className="text-gray-600 text-center mb-6 max-w-3xl mx-auto">
-              Experience premium cab service with verified drivers, transparent pricing, and 24/7 customer support. 
+              Experience premium cab service with verified drivers, transparent pricing, and 24/7 customer support.
               Book your {formattedCityName} to {formattedDestination} taxi with confidence.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center p-4" itemScope itemType="https://schema.org/ServiceFeature">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -371,7 +376,7 @@ export default function RouteClientContent({
                 <h3 className="font-semibold text-lg mb-2" itemProp="name">Safe & Secure Journey</h3>
                 <p className="text-gray-600 text-sm" itemProp="description">Verified drivers with valid licenses, GPS tracking, 24/7 support, and emergency assistance</p>
               </div>
-              
+
               <div className="text-center p-4" itemScope itemType="https://schema.org/ServiceFeature">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CreditCard className="w-8 h-8 text-blue-600" />
@@ -379,7 +384,7 @@ export default function RouteClientContent({
                 <h3 className="font-semibold text-lg mb-2" itemProp="name">Transparent Pricing</h3>
                 <p className="text-gray-600 text-sm" itemProp="description">No hidden charges, fixed rates, advance booking confirmation, multiple payment options</p>
               </div>
-              
+
               <div className="text-center p-4" itemScope itemType="https://schema.org/ServiceFeature">
                 <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Car className="w-8 h-8 text-yellow-600" />
@@ -415,13 +420,13 @@ export default function RouteClientContent({
                 <h3 className="font-semibold text-lg mb-2">GPS Tracked Journey</h3>
                 <p className="text-gray-600 text-sm">Real-time location sharing and route optimization for fastest and safest travel from {formattedCityName} to {formattedDestination}.</p>
               </div>
-              
+
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <Award className="w-8 h-8 text-green-600 mb-4" />
                 <h3 className="font-semibold text-lg mb-2">Experienced Drivers</h3>
                 <p className="text-gray-600 text-sm">Professional chauffeurs with extensive knowledge of {formattedCityName}-{formattedDestination} route and traffic patterns.</p>
               </div>
-              
+
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <Clock className="w-8 h-8 text-yellow-600 mb-4" />
                 <h3 className="font-semibold text-lg mb-2">Punctual Service</h3>
@@ -441,16 +446,15 @@ export default function RouteClientContent({
                   Choose from our fleet of AC cabs including Sedan, SUV, Tempo Traveller. All prices include fuel, driver, and taxes.
                 </p>
               </div>
-              
+
               {/* Trip Type Toggle */}
               <div className="flex bg-gray-100 rounded-lg p-1" role="tablist">
                 <button
                   onClick={() => handleTabChange('oneWay')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    activeTab === 'oneWay'
-                      ? 'bg-white text-black shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'oneWay'
+                    ? 'bg-white text-black shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                    }`}
                   role="tab"
                   aria-selected={activeTab === 'oneWay'}
                   aria-label="One way cab booking"
@@ -459,11 +463,10 @@ export default function RouteClientContent({
                 </button>
                 <button
                   onClick={() => handleTabChange('roundTrip')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    activeTab === 'roundTrip'
-                      ? 'bg-white text-black shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'roundTrip'
+                    ? 'bg-white text-black shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                    }`}
                   role="tab"
                   aria-selected={activeTab === 'roundTrip'}
                   aria-label="Round trip cab booking"
@@ -472,19 +475,19 @@ export default function RouteClientContent({
                 </button>
               </div>
             </header>
-            
+
             <div className="p-6">
               {/* Enhanced Vehicle Cards with microdata */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 {filteredVehicles.length > 0 ? filteredVehicles.map((price, index) => {
                   const currentPricingType = getVehiclePricingType(index);
                   const isRoundTrip = currentPricingType === 'roundTrip';
-                  
+
                   return (
-                    <article 
-                      key={index} 
+                    <article
+                      key={index}
                       className="bg-gray-50 border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300"
-                      itemScope 
+                      itemScope
                       itemType="https://schema.org/Product"
                     >
                       {/* Enhanced Vehicle Image with better alt text */}
@@ -499,18 +502,18 @@ export default function RouteClientContent({
                           itemProp="image"
                         />
                       </div>
-                      
+
                       {/* Enhanced Vehicle Info */}
                       <div className="text-center">
                         <h3 className="font-bold text-lg mb-2" itemProp="name">
                           {price.vehicle} - {formattedCityName} to {formattedDestination}
                         </h3>
-                        
+
                         <div className="text-gray-600 text-sm flex items-center justify-center mb-4" itemProp="description">
                           <Users className="w-4 h-4 mr-1" />
                           {price.capacity || getVehicleCapacity(price.vehicle)} • AC • Professional Driver
                         </div>
-                        
+
                         {/* Enhanced Round Trip Toggle */}
                         <div className="flex items-center justify-center mb-4">
                           <label className="flex items-center cursor-pointer">
@@ -528,7 +531,7 @@ export default function RouteClientContent({
                             <span className="ml-2 text-sm text-gray-600">Round Trip Booking</span>
                           </label>
                         </div>
-                        
+
                         {/* Enhanced Price with microdata */}
                         <div className="mb-6" itemProp="offers" itemScope itemType="https://schema.org/Offer">
                           <div className={`text-2xl md:text-3xl font-bold ${isRoundTrip ? 'text-blue-600' : 'text-green-600'}`}>
@@ -540,7 +543,7 @@ export default function RouteClientContent({
                           <meta itemProp="priceCurrency" content="INR" />
                           <meta itemProp="availability" content="https://schema.org/InStock" />
                         </div>
-                        
+
                         {/* Enhanced Book Button */}
                         <button
                           onClick={handleWhatsApp}
@@ -586,7 +589,7 @@ export default function RouteClientContent({
                         </button>
                       </div>
                     </article>
-                    
+
                     <article className="bg-gray-50 border border-gray-200 rounded-xl p-6" itemScope itemType="https://schema.org/Product">
                       <div className="relative w-full h-32 mb-4 rounded-lg overflow-hidden bg-white">
                         <Image
@@ -631,10 +634,10 @@ export default function RouteClientContent({
                         Group Travel Options - {formattedCityName} to {formattedDestination}
                       </h3>
                       <p className="text-blue-700 mb-4 text-sm">
-                        For family groups and corporate travel, book our Tempo Travellers and Luxury Buses exclusively for round-trip journeys. 
+                        For family groups and corporate travel, book our Tempo Travellers and Luxury Buses exclusively for round-trip journeys.
                         Perfect for {formattedCityName} to {formattedDestination} group tours and family outings.
                       </p>
-                      
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {roundTripOnlyVehicles.slice(0, 2).map((vehicle, index) => (
                           <div key={index} className="bg-white rounded-lg p-3 border border-blue-200">
@@ -662,7 +665,7 @@ export default function RouteClientContent({
                           </div>
                         ))}
                       </div>
-                      
+
                       <p className="text-sm text-blue-600 font-medium mt-3">
                         💡 Switch to Round Trip to see all vehicle options for {formattedCityName} to {formattedDestination}!
                       </p>
@@ -678,7 +681,7 @@ export default function RouteClientContent({
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               {formattedCityName} to {formattedDestination} Route Information
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-gray-50 rounded-lg p-6">
                 <MapPin className="w-8 h-8 text-red-600 mb-4" />
@@ -693,7 +696,7 @@ export default function RouteClientContent({
                   Actual time may vary based on traffic conditions and weather.
                 </p>
               </div>
-              
+
               <div className="bg-gray-50 rounded-lg p-6">
                 <Car className="w-8 h-8 text-blue-600 mb-4" />
                 <h3 className="font-semibold text-lg mb-2">Best Travel Times</h3>
@@ -707,7 +710,7 @@ export default function RouteClientContent({
                   Book advance for preferred departure times.
                 </p>
               </div>
-              
+
               <div className="bg-gray-50 rounded-lg p-6">
                 <Shield className="w-8 h-8 text-green-600 mb-4" />
                 <h3 className="font-semibold text-lg mb-2">Safety Features</h3>
@@ -725,18 +728,18 @@ export default function RouteClientContent({
           </section>
 
           {/* Office Locations */}
-          <OfficeLocations 
+          <OfficeLocations
             originCity={formattedCityName}
             destinationCity={formattedDestination}
             offices={routeOffices}
           />
-          
+
           {/* FAQ Section */}
           <section className="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               {formattedCityName} to {formattedDestination} Cab Booking - Frequently Asked Questions
             </h2>
-            
+
             <div className="space-y-4">
               <details className="border border-gray-200 rounded-lg overflow-hidden" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                 <summary className="bg-gray-50 p-4 font-medium cursor-pointer hover:bg-gray-100 transition-colors">
@@ -744,50 +747,50 @@ export default function RouteClientContent({
                 </summary>
                 <div className="p-4 text-gray-600 text-sm leading-relaxed" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <div itemProp="text">
-                    Taxi fare from {formattedCityName} to {formattedDestination} starts from {startingPrice} for one-way trips. 
-                    The exact cost depends on vehicle type (Sedan ₹12/km, SUV ₹16/km, Tempo Traveller for groups) and trip type (one-way or round-trip). 
+                    Taxi fare from {formattedCityName} to {formattedDestination} starts from {startingPrice} for one-way trips.
+                    The exact cost depends on vehicle type (Sedan ₹12/km, SUV ₹16/km, Tempo Traveller for groups) and trip type (one-way or round-trip).
                     All prices include fuel, driver allowance, toll charges, and applicable taxes. Round-trip bookings often offer better value with package deals.
                   </div>
                 </div>
               </details>
-              
+
               <details className="border border-gray-200 rounded-lg overflow-hidden" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                 <summary className="bg-gray-50 p-4 font-medium cursor-pointer hover:bg-gray-100 transition-colors">
                   <span itemProp="name">How long does it take to travel from {formattedCityName} to {formattedDestination}?</span>
                 </summary>
                 <div className="p-4 text-gray-600 text-sm leading-relaxed" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <div itemProp="text">
-                    The journey from {formattedCityName} to {formattedDestination} typically takes {route.time || estimatedTime} 
-                    {' '}covering approximately {route.distance || estimatedDistance}. Travel time may vary based on traffic conditions, 
-                    weather, route taken, and number of stops. Our drivers choose the fastest and safest route for your comfort. 
+                    The journey from {formattedCityName} to {formattedDestination} typically takes {route.time || estimatedTime}
+                    {' '}covering approximately {route.distance || estimatedDistance}. Travel time may vary based on traffic conditions,
+                    weather, route taken, and number of stops. Our drivers choose the fastest and safest route for your comfort.
                     Early morning departures (5-7 AM) usually have the shortest travel time due to lighter traffic.
                   </div>
                 </div>
               </details>
-              
+
               <details className="border border-gray-200 rounded-lg overflow-hidden" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                 <summary className="bg-gray-50 p-4 font-medium cursor-pointer hover:bg-gray-100 transition-colors">
                   <span itemProp="name">Can I book a one-way cab from {formattedCityName} to {formattedDestination}?</span>
                 </summary>
                 <div className="p-4 text-gray-600 text-sm leading-relaxed" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <div itemProp="text">
-                    Yes, we provide one-way taxi service from {formattedCityName} to {formattedDestination}. 
-                    You only pay for the actual distance traveled without any return charges. Sedans, SUVs, and Innova are available 
-                    for one-way bookings. For better value on longer trips, consider our round-trip packages. 
+                    Yes, we provide one-way taxi service from {formattedCityName} to {formattedDestination}.
+                    You only pay for the actual distance traveled without any return charges. Sedans, SUVs, and Innova are available
+                    for one-way bookings. For better value on longer trips, consider our round-trip packages.
                     One-way bookings are perfect for airport transfers, business meetings, or when you have different return arrangements.
                   </div>
                 </div>
               </details>
-              
+
               <details className="border border-gray-200 rounded-lg overflow-hidden" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                 <summary className="bg-gray-50 p-4 font-medium cursor-pointer hover:bg-gray-100 transition-colors">
                   <span itemProp="name">What safety measures do you follow for {formattedCityName} to {formattedDestination} trips?</span>
                 </summary>
                 <div className="p-4 text-gray-600 text-sm leading-relaxed" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <div itemProp="text">
-                    We ensure passenger safety through verified drivers with valid licenses and police verification, 
-                    GPS-enabled vehicles for real-time tracking, regular vehicle maintenance and fitness certificates, 
-                    24/7 customer support and emergency assistance, sanitized vehicles following health protocols, 
+                    We ensure passenger safety through verified drivers with valid licenses and police verification,
+                    GPS-enabled vehicles for real-time tracking, regular vehicle maintenance and fitness certificates,
+                    24/7 customer support and emergency assistance, sanitized vehicles following health protocols,
                     and insurance coverage for all passengers. All drivers follow traffic safety guidelines and are trained for long-distance travel.
                   </div>
                 </div>
@@ -799,9 +802,9 @@ export default function RouteClientContent({
                 </summary>
                 <div className="p-4 text-gray-600 text-sm leading-relaxed" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <div itemProp="text">
-                    Booking {formattedCityName} to {formattedDestination} cab is easy! Call us at {phoneNumber} for instant booking or 
-                    WhatsApp us with your travel details. Provide pickup location, destination, date, time, and passenger count. 
-                    You can also book online through our website with advance payment options. Confirmation with driver details 
+                    Booking {formattedCityName} to {formattedDestination} cab is easy! Call us at {phoneNumber} for instant booking or
+                    WhatsApp us with your travel details. Provide pickup location, destination, date, time, and passenger count.
+                    You can also book online through our website with advance payment options. Confirmation with driver details
                     will be shared via SMS/WhatsApp. We accept cash, UPI, card payments, and online transfers.
                   </div>
                 </div>
@@ -813,9 +816,9 @@ export default function RouteClientContent({
                 </summary>
                 <div className="p-4 text-gray-600 text-sm leading-relaxed" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <div itemProp="text">
-                    Our {formattedCityName} to {formattedDestination} cab fare includes: fuel costs, professional driver charges, 
-                    vehicle maintenance, insurance coverage, toll charges (where applicable), taxes, and 24/7 customer support. 
-                    No hidden charges or extra fees. AC is complementary, and we provide water bottles for long journeys. 
+                    Our {formattedCityName} to {formattedDestination} cab fare includes: fuel costs, professional driver charges,
+                    vehicle maintenance, insurance coverage, toll charges (where applicable), taxes, and 24/7 customer support.
+                    No hidden charges or extra fees. AC is complementary, and we provide water bottles for long journeys.
                     Driver accommodation for overnight stays (if required) is included in round-trip packages.
                   </div>
                 </div>
@@ -828,23 +831,23 @@ export default function RouteClientContent({
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               Complete Guide to {formattedCityName} to {formattedDestination} Taxi Service
             </h2>
-            
+
             <div className="prose max-w-none text-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Why Choose Professional Cab Service for {formattedCityName} to {formattedDestination}?
               </h3>
               <p className="mb-4">
-                Traveling from {formattedCityName} to {formattedDestination} requires reliable transportation, and our professional taxi service 
-                ensures a comfortable, safe, and punctual journey. With experienced drivers familiar with the {formattedCityName}-{formattedDestination} 
+                Traveling from {formattedCityName} to {formattedDestination} requires reliable transportation, and our professional taxi service
+                ensures a comfortable, safe, and punctual journey. With experienced drivers familiar with the {formattedCityName}-{formattedDestination}
                 route, you can relax and enjoy the scenic journey while we handle the driving.
               </p>
-              
+
               <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-6">
                 Vehicle Options for Every Travel Need
               </h3>
               <p className="mb-4">
-                Whether you are traveling solo, with family, or in a group, we have the perfect vehicle for your {formattedCityName} to {formattedDestination} 
-                journey. Our fleet includes comfortable Sedans for 4 passengers, spacious SUVs (Ertiga/Innova) for 6-7 passengers, and Tempo Travellers 
+                Whether you are traveling solo, with family, or in a group, we have the perfect vehicle for your {formattedCityName} to {formattedDestination}
+                journey. Our fleet includes comfortable Sedans for 4 passengers, spacious SUVs (Ertiga/Innova) for 6-7 passengers, and Tempo Travellers
                 for larger groups up to 25 passengers. All vehicles are well-maintained, air-conditioned, and equipped with safety features.
               </p>
 
@@ -852,8 +855,8 @@ export default function RouteClientContent({
                 Transparent Pricing Policy
               </h3>
               <p className="mb-4">
-                Our {formattedCityName} to {formattedDestination} cab fare is completely transparent with no hidden charges. The quoted price includes 
-                fuel, driver charges, toll fees, taxes, and vehicle maintenance. We offer competitive rates starting from {startingPrice} for one-way 
+                Our {formattedCityName} to {formattedDestination} cab fare is completely transparent with no hidden charges. The quoted price includes
+                fuel, driver charges, toll fees, taxes, and vehicle maintenance. We offer competitive rates starting from {startingPrice} for one-way
                 trips and special package deals for round-trip bookings. Payment can be made via cash, UPI, cards, or online transfer.
               </p>
 
@@ -861,13 +864,13 @@ export default function RouteClientContent({
                 Booking Process Made Simple
               </h3>
               <p className="mb-4">
-                Booking your {formattedCityName} to {formattedDestination} taxi is hassle-free. Simply call {phoneNumber} or WhatsApp us with your 
-                travel details including pickup location, destination, date, time, and number of passengers. We provide instant confirmation with 
+                Booking your {formattedCityName} to {formattedDestination} taxi is hassle-free. Simply call {phoneNumber} or WhatsApp us with your
+                travel details including pickup location, destination, date, time, and number of passengers. We provide instant confirmation with
                 driver details, vehicle information, and contact numbers. Our customer support team is available 24/7 to assist with your booking.
               </p>
             </div>
           </section>
-          
+
           {/* Enhanced Related Routes Section */}
           <section className="bg-white rounded-xl shadow-lg p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
@@ -876,33 +879,94 @@ export default function RouteClientContent({
             <p className="text-gray-600 mb-6">
               Explore other popular taxi destinations from {formattedCityName}. Book reliable cab service to these cities with professional drivers and transparent pricing.
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {routes
                 .filter(r => r.destination !== formattedDestination)
                 .slice(0, 8)
                 .map((routeItem, index) => (
-                <Link 
-                  key={index}
-                  href={`/${createRouteSlug(cityName, routeItem.destination)}`}
-                  className="p-4 border border-gray-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-all duration-300 flex items-center justify-between group"
-                  title={`Book cab from ${formattedCityName} to ${routeItem.destination} - Starting ₹${routeItem.startingPrice || '2500'}`}
-                >
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium group-hover:text-yellow-700 text-sm truncate">
-                      {formattedCityName} to {routeItem.destination} Cab
+                  <Link
+                    key={index}
+                    href={`/${createRouteSlug(cityName, routeItem.destination)}`}
+                    className="p-4 border border-gray-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-all duration-300 flex items-center justify-between group"
+                    title={`Book cab from ${formattedCityName} to ${routeItem.destination} - Starting ₹${routeItem.startingPrice || '2500'}`}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium group-hover:text-yellow-700 text-sm truncate">
+                        {formattedCityName} to {routeItem.destination} Cab
+                      </div>
+                      <div className="text-xs text-gray-600 mt-1">
+                        {routeItem.distance} • {routeItem.time} • Book Online
+                      </div>
                     </div>
-                    <div className="text-xs text-gray-600 mt-1">
-                      {routeItem.distance} • {routeItem.time} • Book Online
-                    </div>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-yellow-500 flex-shrink-0 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              ))}
+                    <ArrowRight className="w-4 h-4 text-yellow-500 flex-shrink-0 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                ))}
             </div>
           </section>
         </main>
 
+        <section className="sr-only" aria-hidden="true">
+          <h2>Complete Keyword Index for {formattedCityName} to {formattedDestination}</h2>
+          <div itemScope itemType="https://schema.org/Service">
+            <meta itemProp="serviceType" content="Taxi Service" />
+            <meta itemProp="provider" content="Triveni Cabs" />
+            <meta itemProp="areaServed" content={`${formattedCityName}, ${formattedDestination}`} />
+
+            {/* Keyword Cloud */}
+            <ul>
+              {allPageKeywords.map((keyword, index) => (
+                <li key={index}>
+                  <span itemProp="keywords">{keyword}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Additional semantic content */}
+            <p>
+              Professional taxi service from {formattedCityName} to {formattedDestination} with verified drivers,
+              GPS tracking, transparent pricing, 24x7 availability, clean AC vehicles, instant booking,
+              safe journey, comfortable ride, affordable rates, premium service, luxury cars, economy options,
+              one way taxi, round trip cab, outstation booking, intercity travel, highway service,
+              airport transfer, railway pickup, hotel drop, corporate booking, wedding cars, group travel,
+              family tours, couple packages, honeymoon trips, adventure tours, sightseeing cabs,
+              local tours, city tours, heritage visits, pilgrimage trips, religious tours, temple visits,
+              spiritual journeys, nature tours, wildlife trips, photography tours, food tours,
+              shopping trips, cultural tours, business travel, meeting cabs, conference transport,
+              event cabs, party pickup, night service, early morning, late night, weekend bookings,
+              holiday service, festival cabs, seasonal offers, discount fares, special rates,
+              promotional prices, package deals, bulk booking, advance reservation, instant confirmation,
+              online booking, mobile app, digital payment, cashless transaction, UPI payment,
+              card payment, wallet payment, secure payment, encrypted transaction, safe booking,
+              verified payment, instant refund, flexible cancellation, customer support,
+              24/7 helpline, emergency assistance, breakdown support, roadside help,
+              technical support, complaint resolution, feedback system, rating reviews,
+              customer testimonials, verified reviews, authentic feedback, real experiences,
+              trusted service, reliable company, reputed brand, licensed operator, registered company,
+              insured vehicles, legal documentation, proper permits, valid licenses,
+              certified drivers, trained chauffeurs, experienced drivers, professional service,
+              courteous behavior, polite drivers, helpful staff, friendly service,
+              customer satisfaction, quality assurance, premium standards, superior service,
+              excellent quality, outstanding performance, exceptional service, remarkable experience,
+              memorable journey, comfortable travel, smooth ride, safe journey, secure trip,
+              protected travel, insured journey, guaranteed safety, assured security,
+              GPS tracking, live monitoring, real-time updates, continuous tracking,
+              journey recording, trip logging, panic button, SOS alert, emergency help,
+              distress signal, safety alarm, security feature, protection enabled,
+              CCTV camera, video recording, footage saved, monitored service, supervised journey,
+              clean vehicles, sanitized cars, disinfected interior, hygienic environment,
+              fresh air, neat cars, tidy interior, organized service, well maintained,
+              regular service, frequent checks, daily inspection, weekly testing, monthly certification,
+              valid fitness, current permit, updated insurance, renewed license, active registration,
+              spacious cars, roomy interior, ample space, generous room, wide seating,
+              comfortable seats, cushioned interior, padded seats, plush seating, luxury comfort,
+              premium amenities, deluxe features, upscale service, high-end quality, top-class standards,
+              first-rate service, superior quality, excellent standards, best service, top quality,
+              leading company, number one service, premier cab, elite taxi, exclusive service,
+              VIP treatment, executive service, business class, first class, premium category.
+            </p>
+          </div>
+        </section>
         {/* Enhanced Footer CTA */}
         <section className="bg-gray-900 text-white py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -910,18 +974,18 @@ export default function RouteClientContent({
               Ready to Book Your {formattedCityName} to {formattedDestination} Cab?
             </h2>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who trust our reliable taxi service. 
+              Join thousands of satisfied customers who trust our reliable taxi service.
               Book now for instant confirmation and enjoy a comfortable journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
+              <button
                 onClick={handleCallNow}
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg flex items-center justify-center transition-all font-medium"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call {phoneNumber}
               </button>
-              <button 
+              <button
                 onClick={handleWhatsApp}
                 className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-lg flex items-center justify-center transition-all font-medium"
               >

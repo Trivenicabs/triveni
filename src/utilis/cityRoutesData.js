@@ -1,7 +1,3 @@
-// Complete cityRoutesData.js with calculated pricing based on per-km rates
-// Sedan: ₹12/km, Ertiga: ₹15/km, Innova: ₹18/km, Tempo: ₹35/km, Bus: ₹55/km
-// Updated: Tempo Traveller capacity: 25 guests, Luxury Bus capacity: 35 guests
-
 export const cityRoutesData = {
   Delhi: [
     {
